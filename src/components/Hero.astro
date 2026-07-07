@@ -24,8 +24,7 @@ const hero = await getHeroImage(siteConfig.heroImage);
 					width={hero.src.width}
 					height={hero.src.height}
 					alt={hero.title}
-					class="w-auto max-w-xl h-auto shadow-2xl object-cover"
-					style="max-height: 600px;"
+					class="w-auto max-w-xl h-auto max-h-[50svh] md:max-h-[520px] shadow-2xl object-cover"
 				/>
 			)
 		}
