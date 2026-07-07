@@ -1,1 +1,39 @@
-<object></object>
+---
+import { Image } from 'astro:assets';
+import { getHeroImage } from '../data/imageStore';
+import siteConfig from '../../site.config.mjs';
+
+const base = import.meta.env.BASE_URL;
+const hero = await getHeroImage(siteConfig.heroImage);
+---
+
+<section class="relative overflow-hidden mt-[65px]">
+	<!-- Angular black band (diagonal top & bottom edges) -->
+	<div
+		class="absolute inset-0 bg-black pt-7"
+	>
+	</div>
+
+	<div class="relative z-10 flex flex-col items-center px-4 py-20 md:py-28">
+		{
+			hero && (
+				<Image
+					src={hero.src}
+					quality={90}
+					format="webp"
+					width={hero.src.width}
+					height={hero.src.height}
+					alt={hero.title}
+					class="w-auto max-w-xl h-auto shadow-2xl object-cover"
+					style="max-height: 600px;"
+				/>
+			)
+		}
+
+		<h3 class="eyebrow mt-12 text-center text-3xl" style="color: hsl(var(--brand));">Photography Beyond the Surface</h3>
+		<div class="mt-4 h-px w-16 bg-white/30"></div>
+		<a href={`${base}collections`} class="cta-link mt-6 text-white/90 hover:text-brand text-2xl">
+			View Gallery <span class="cta-arrow">&rarr;</span>
+		</a>
+	</div>
+</section>

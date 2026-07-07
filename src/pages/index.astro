@@ -1,1 +1,13 @@
-<object></object>
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedGallery from '../components/FeaturedGallery.astro';
+---
+
+<MainLayout>
+	<Hero />
+
+	<section class="featured-section py-24">
+		<FeaturedGallery />
+	</section>
+</MainLayout>
