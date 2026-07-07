@@ -8,16 +8,16 @@
 
 ## 1. Where things stand today
 
-| Thing | Current state |
-|---|---|
-| This repo | `PavlosIsaris/paulisaris-photo-portfolio` (GitHub) |
-| Framework | Astro 5, **static** build → `dist/` |
-| Node version | 26 (`.nvmrc`) |
-| Current deploy | `.github/workflows/deploy.yml` builds on push to `main` and pushes `dist/` to the `gh-pages` branch (GitHub Pages) |
-| `site` in `astro.config.mts` | **Unset** — sitemap + RSS stay dormant until set |
-| Hugo dev blog | Already on DO App Platform (free static site) |
-| `paulisaris.com` | Currently → Hugo blog |
-| `paulisaris.dev` | Currently → Hugo blog (will **stay** there) |
+| Thing                        | Current state                                                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| This repo                    | `PavlosIsaris/paulisaris-photo-portfolio` (GitHub)                                                                 |
+| Framework                    | Astro 5, **static** build → `dist/`                                                                                |
+| Node version                 | 26 (`.nvmrc`)                                                                                                      |
+| Current deploy               | `.github/workflows/deploy.yml` builds on push to `main` and pushes `dist/` to the `gh-pages` branch (GitHub Pages) |
+| `site` in `astro.config.mts` | **Unset** — sitemap + RSS stay dormant until set                                                                   |
+| Hugo dev blog                | Already on DO App Platform (free static site)                                                                      |
+| `paulisaris.com`             | Currently → Hugo blog                                                                                              |
+| `paulisaris.dev`             | Currently → Hugo blog (will **stay** there)                                                                        |
 
 **Target end state:**
 
@@ -49,6 +49,7 @@ feature branch ──► main  (integration / staging)
 Do these **before** touching the DO console.
 
 ### 3.1 Set the canonical site URL
+
 Sitemap and RSS need the final domain. In `astro.config.mts`:
 
 ```ts
@@ -60,6 +61,7 @@ export default defineConfig({
 ```
 
 ### 3.2 Create the `release` branch
+
 ```bash
 git checkout main
 git pull
@@ -68,6 +70,7 @@ git push -u origin release
 ```
 
 ### 3.3 Decide what to do with the existing GitHub Pages deploy
+
 `.github/workflows/deploy.yml` currently publishes to GitHub Pages on every push to `main`. Two options:
 
 - **Recommended — retire it.** Once DO is the host, delete `deploy.yml` (and later the `gh-pages` branch). Keep `test.yml` and `quality.yml` — those are still useful CI on PRs.
@@ -76,20 +79,21 @@ git push -u origin release
 > Keep `test.yml` / `quality.yml` regardless — they gate your PRs before code reaches `release`.
 
 ### 3.4 (Optional) Commit a DO App Spec
+
 You can define the app declaratively instead of clicking through the UI. Create `.do/app.yaml`:
 
 ```yaml
 name: paulisaris-photo-portfolio
-region: fra   # pick the region closest to you / your audience
+region: fra # pick the region closest to you / your audience
 static_sites:
-  - name: astro-portfolio
-    github:
-      repo: PavlosIsaris/paulisaris-photo-portfolio
-      branch: release
-      deploy_on_push: true
-    build_command: npm run build
-    output_dir: dist
-    # environment_slug is auto-detected (Node). See §7 on the Node version.
+    - name: astro-portfolio
+      github:
+          repo: PavlosIsaris/paulisaris-photo-portfolio
+          branch: release
+          deploy_on_push: true
+      build_command: npm run build
+      output_dir: dist
+      # environment_slug is auto-detected (Node). See §7 on the Node version.
 ```
 
 This lets you recreate/version the app config. You can still create the app via the UI (§4) if you prefer.
@@ -104,9 +108,9 @@ In the DigitalOcean console:
 2. **Source:** GitHub → authorize if needed → pick `PavlosIsaris/paulisaris-photo-portfolio`.
 3. **Branch:** `release`. Enable **Autodeploy** ("Deploy on push").
 4. DO inspects the repo and should detect a static site. Confirm/set:
-   - **Build command:** `npm run build`
-   - **Output directory:** `dist`
-   - **Resource type:** **Static Site** (not Web Service — that matters for the free tier).
+    - **Build command:** `npm run build`
+    - **Output directory:** `dist`
+    - **Resource type:** **Static Site** (not Web Service — that matters for the free tier).
 5. **Plan:** choose the **Static Site (free)** tier.
 6. Name the app something clear, e.g. `paulisaris-photo-portfolio`, and create it.
 7. Watch the first build in the **Activity/Deployments** tab. It will build from `release` and give you a temporary URL like `https://astro-portfolio-xxxx.ondigitalocean.app`. Verify the site looks right there **before** touching DNS.
@@ -133,14 +137,17 @@ Confirm a new deployment kicks off automatically in the DO **Deployments** tab. 
 > ⚠️ A domain can be attached to **only one** App Platform app at a time. You must detach it from the Hugo app before (or as part of) attaching it to the Astro app. Expect a few minutes of cutover while the new TLS cert is issued.
 
 ### 6.1 Detach from the Hugo app
+
 DO console → **Apps → (Hugo blog app) → Settings → Domains** → remove `paulisaris.com` (and `www.paulisaris.com` if present).
 Leave `paulisaris.dev` on the Hugo app untouched.
 
 ### 6.2 Attach to the Astro app
+
 DO console → **Apps → (new Astro app) → Settings → Domains → Add Domain** → `paulisaris.com`.
 Add `www.paulisaris.com` too if you want it (set one as primary and redirect the other).
 
 ### 6.3 DNS — pick the branch that matches your setup
+
 How you finish depends on where `paulisaris.com`'s DNS is managed:
 
 - **A) DNS already managed by DigitalOcean** (nameservers point to `ns1/2/3.digitalocean.com` — likely, since the domain already works on your DO Hugo app):
@@ -148,11 +155,12 @@ How you finish depends on where `paulisaris.com`'s DNS is managed:
 
 - **B) DNS managed at your registrar** (external):
   DO will show you a target when you add the domain. Point the records there:
-  - Apex `paulisaris.com` → an **A/ALIAS/ANAME** record to the app (registrars that support CNAME-flattening/ALIAS on the apex; DO shows the exact value).
-  - `www` → **CNAME** to the app's `*.ondigitalocean.app` hostname.
-  - If your registrar can't do ALIAS/ANAME on the apex, the clean fix is to **delegate the domain's DNS to DigitalOcean** (set nameservers to DO), then use option A.
+    - Apex `paulisaris.com` → an **A/ALIAS/ANAME** record to the app (registrars that support CNAME-flattening/ALIAS on the apex; DO shows the exact value).
+    - `www` → **CNAME** to the app's `*.ondigitalocean.app` hostname.
+    - If your registrar can't do ALIAS/ANAME on the apex, the clean fix is to **delegate the domain's DNS to DigitalOcean** (set nameservers to DO), then use option A.
 
 ### 6.4 Wait for SSL
+
 DO auto-provisions a Let's Encrypt certificate once DNS resolves to the app. The domain shows "pending" until then; give it up to ~30–60 min. HTTPS then works automatically.
 
 ---
@@ -182,4 +190,7 @@ DO auto-provisions a Let's Encrypt certificate once DNS resolves to the app. The
 - [ ] SSL issued, `https://paulisaris.com` serves the Astro site
 - [ ] `paulisaris.dev` still serves the Hugo blog
 - [ ] (Cleanup) delete `deploy.yml` + `gh-pages` branch if retiring GitHub Pages
+
+```
+
 ```
