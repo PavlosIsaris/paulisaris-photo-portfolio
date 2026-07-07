@@ -1,0 +1,12 @@
+name: paulisaris-photo-portfolio
+region: fra # closest region to you / your audience — change if needed
+static_sites:
+  - name: astro-portfolio
+    github:
+      repo: PavlosIsaris/paulisaris-photo-portfolio
+      branch: release
+      deploy_on_push: true
+    build_command: npm run build
+    output_dir: dist
+    # Node is auto-detected from .nvmrc. If DO doesn't yet support that Node
+    # version, pin .nvmrc to the latest LTS DO supports (see DEPLOYMENT.md §7).
