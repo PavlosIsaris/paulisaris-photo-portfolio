@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import { featuredCollectionId, getHeroImage, getImages } from '../data/imageStore';
+import siteConfig from '../../site.config.mjs';
+
+const base = import.meta.env.BASE_URL;
+// The hero image leads the page — show the rest of the featured collection here.
+const hero = await getHeroImage(siteConfig.heroImage);
+const images = (await getImages({ collection: featuredCollectionId })).filter(
+	(image) => image.path !== hero?.path,
+);
+---
+
+<div class="container-custom">
+	<div class="text-center mb-14">
+		<h3 class="eyebrow text-xl">Selected Frames</h3>
+		<h2 class="text-3xl md:text-4xl font-bold mt-3">Featured Works</h2>
+	</div>
+
+	<div id="featured-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:balance]">
+		{
+			images.map((image, i) => (
+				<a
+					href={image.src.src}
+					class={`glightbox group mb-6 block break-inside-avoid ${
+						i % 2 === 1 ? 'lg:mt-10' : ''
+					}`}
+					data-gallery="featured"
+					data-type="image"
+					data-glightbox={image.description ? `title: ${image.description}` : undefined}
+				>
+					<Image
+						src={image.src}
+						quality={90}
+						format="webp"
+						width={image.src.width}
+						height={image.src.height}
+						class="w-full h-auto object-cover shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:scale-[1.02]"
+						alt={image.title}
+					/>
+				</a>
+			))
+		}
+	</div>
+
+	<div class="text-center mt-16">
+		<a href={`${base}collections`} class="cta-link text-gray-900 hover:text-brand text-2xl">
+			View Gallery <span class="cta-arrow">&rarr;</span>
+		</a>
+	</div>
+</div>
+
+<script>
+	import GLightbox from 'glightbox';
+	import 'glightbox/dist/css/glightbox.css';
+	import '../styles/glightbox-custom.css';
+
+	const init = () => {
+		if (!document.querySelector('#featured-grid .glightbox')) return;
+		GLightbox({
+			selector: '#featured-grid .glightbox',
+			openEffect: 'zoom',
+			closeEffect: 'fade',
+			width: '94vw',
+			height: '92vh',
+		});
+	};
+
+	if (document.readyState !== 'loading') {
+		init();
+	} else {
+		document.addEventListener('DOMContentLoaded', init);
+	}
+</script>

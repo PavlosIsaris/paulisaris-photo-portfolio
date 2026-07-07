@@ -1,0 +1,357 @@
+collections:
+  - id: noplace
+    name: No Place
+images:
+  - path: noplace/Project_2026_001.jpg
+    meta:
+      title: No Place 001
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_003.jpg
+    meta:
+      title: No Place 003
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_004.jpg
+    meta:
+      title: No Place 004
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_005.jpg
+    meta:
+      title: No Place 005
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_006.jpg
+    meta:
+      title: No Place 006
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_007.jpg
+    meta:
+      title: No Place 007
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_008.jpg
+    meta:
+      title: No Place 008
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_009.jpg
+    meta:
+      title: No Place 009
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_010.jpg
+    meta:
+      title: No Place 010
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_011.jpg
+    meta:
+      title: No Place 011
+      description: null
+      collections:
+        - noplace
+        - featured
+    exif: {}
+  - path: noplace/Project_2026_012.jpg
+    meta:
+      title: No Place 012
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_013.jpg
+    meta:
+      title: No Place 013
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_014.jpg
+    meta:
+      title: No Place 014
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_015.jpg
+    meta:
+      title: No Place 015
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_016.jpg
+    meta:
+      title: No Place 016
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_017.jpg
+    meta:
+      title: No Place 017
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_018.jpg
+    meta:
+      title: No Place 018
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_019.jpg
+    meta:
+      title: No Place 019
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_021.jpg
+    meta:
+      title: No Place 021
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_023.jpg
+    meta:
+      title: No Place 023
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_024.jpg
+    meta:
+      title: No Place 024
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_025.jpg
+    meta:
+      title: No Place 025
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_026.jpg
+    meta:
+      title: No Place 026
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_027.jpg
+    meta:
+      title: No Place 027
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_028.jpg
+    meta:
+      title: No Place 028
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_029.jpg
+    meta:
+      title: No Place 029
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_030.jpg
+    meta:
+      title: No Place 030
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_031.jpg
+    meta:
+      title: No Place 031
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_032.jpg
+    meta:
+      title: No Place 032
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_033.jpg
+    meta:
+      title: No Place 033
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_034.jpg
+    meta:
+      title: No Place 034
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_035.jpg
+    meta:
+      title: No Place 035
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_036.jpg
+    meta:
+      title: No Place 036
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_037.jpg
+    meta:
+      title: No Place 037
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_038.jpg
+    meta:
+      title: No Place 038
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_039.jpg
+    meta:
+      title: No Place 039
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_041.jpg
+    meta:
+      title: No Place 041
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_042.jpg
+    meta:
+      title: No Place 042
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_043.jpg
+    meta:
+      title: No Place 043
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_044.jpg
+    meta:
+      title: No Place 044
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_045.jpg
+    meta:
+      title: No Place 045
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_046.jpg
+    meta:
+      title: No Place 046
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_047.jpg
+    meta:
+      title: No Place 047
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_049.jpg
+    meta:
+      title: No Place 049
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_050.jpg
+    meta:
+      title: No Place 050
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_051.jpg
+    meta:
+      title: No Place 051
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_052.jpg
+    meta:
+      title: No Place 052
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_053.jpg
+    meta:
+      title: No Place 053
+      description: null
+      collections:
+        - noplace
+    exif: {}
+  - path: noplace/Project_2026_054.jpg
+    meta:
+      title: No Place 054
+      description: null
+      collections:
+        - noplace
+    exif: {}

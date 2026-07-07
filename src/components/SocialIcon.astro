@@ -1,0 +1,25 @@
+---
+interface Props {
+	socialLink: { name: string; url: string; icon: any };
+	class?: string;
+	size?: number;
+}
+
+const {
+	socialLink,
+	class: className = 'text-gray-500 hover:text-gray-800',
+	size = 20,
+} = Astro.props;
+
+const Icon = socialLink.icon;
+---
+
+<a
+	href={socialLink.url}
+	target="_blank"
+	rel="noopener noreferrer"
+	class={`transition-colors duration-200 ${className}`}
+	aria-label={socialLink.name}
+>
+	<Icon size={size} />
+</a>

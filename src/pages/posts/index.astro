@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const posts = (
+	await getCollection('posts', ({ data }) => (import.meta.env.PROD ? !data.draft : true))
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const dateFmt = new Intl.DateTimeFormat('en-US', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+});
+---
+
+<MainLayout title="Posts" description="Stories and notes from behind the lens.">
+	<section class="py-16 pt-24">
+		<div class="container-custom">
+			<div class="mb-16 text-center">
+				<h1 class="text-4xl md:text-5xl font-bold mb-4">Posts</h1>
+				<p class="text-gray-600 max-w-xl mx-auto">Stories and notes from behind the lens</p>
+			</div>
+
+			{
+				posts.length === 0 ? (
+					<p class="text-center text-gray-500">No posts yet — check back soon.</p>
+				) : (
+					<div class="max-w-3xl mx-auto flex flex-col gap-12">
+						{posts.map((post) => (
+							<a href={`${base}posts/${post.id}`} class="group grid md:grid-cols-[1fr_2fr] gap-6 items-center">
+								{post.data.cover && (
+									<Image
+										src={post.data.cover}
+										alt={post.data.coverAlt ?? post.data.title}
+										widths={[240, 480, 640]}
+										sizes="(max-width: 768px) 100vw, 300px"
+										format="webp"
+										loading="lazy"
+										class="w-full h-48 md:h-40 object-cover rounded-lg shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+									/>
+								)}
+								<div>
+									<p class="text-sm uppercase tracking-widest text-gray-500 mb-2">
+										<time datetime={post.data.date.toISOString()}>{dateFmt.format(post.data.date)}</time>
+									</p>
+									<h2 class="text-2xl font-semibold mb-2 group-hover:text-black">{post.data.title}</h2>
+									<p class="text-gray-600">{post.data.description}</p>
+								</div>
+							</a>
+						))}
+					</div>
+				)
+			}
+		</div>
+	</section>
+</MainLayout>
