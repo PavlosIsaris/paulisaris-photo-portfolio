@@ -16,7 +16,8 @@ repos:
             entry: npm run format
             language: system
             types: [file]
-            files: \.(js|jsx|ts|tsx|json|md|css|scss|html|astro)$
+            # .astro intentionally omitted — see note in .prettierignore
+            files: \.(js|jsx|ts|tsx|json|md|css|scss|html)$
     - repo: local
       hooks:
           - id: eslint

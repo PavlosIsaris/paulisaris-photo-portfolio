@@ -2,3 +2,9 @@
 build
 coverage
 package-lock.json
+dist
+
+# Astro files are excluded from prettier: a bad prettier-plugin-astro version
+# once rewrote every .astro file to an empty `<object></object>` stub (commit
+# 329146c). Kept out of the formatter to prevent a repeat.
+*.astro
