@@ -15,17 +15,17 @@ npm run preview    # serve the production build locally
 
 ## Where things live
 
-| Path | What it is |
-| --- | --- |
-| `site.config.mts` | Your name, title, favicon, profile image, social links |
-| `src/content/about.md` | The About page text |
-| `src/gallery/<album>/` | Photo albums — drop images here |
-| `src/gallery/gallery.yaml` | Album + image metadata (titles, descriptions, collections) |
-| `src/content/posts/` | Blog posts as Markdown / MDX |
-| `src/content.config.ts` | Schema for post frontmatter |
-| `src/layouts/` | `MainLayout` (site shell + SEO) and `PostLayout` |
-| `src/components/` | Nav, footer, gallery grid, hero — edit HTML/Tailwind freely |
-| `astro.config.mts` | Site config, integrations (MDX, sitemap) |
+| Path                       | What it is                                                  |
+| -------------------------- | ----------------------------------------------------------- |
+| `site.config.mts`          | Your name, title, favicon, profile image, social links      |
+| `src/content/about.md`     | The About page text                                         |
+| `src/gallery/<album>/`     | Photo albums — drop images here                             |
+| `src/gallery/gallery.yaml` | Album + image metadata (titles, descriptions, collections)  |
+| `src/content/posts/`       | Blog posts as Markdown / MDX                                |
+| `src/content.config.ts`    | Schema for post frontmatter                                 |
+| `src/layouts/`             | `MainLayout` (site shell + SEO) and `PostLayout`            |
+| `src/components/`          | Nav, footer, gallery grid, hero — edit HTML/Tailwind freely |
+| `astro.config.mts`         | Site config, integrations (MDX, sitemap)                    |
 
 ## Adding a photo album
 
@@ -44,17 +44,17 @@ npm run preview    # serve the production build locally
    components/HTML).
 2. Fill in the frontmatter:
 
-   ```yaml
-   ---
-   title: 'My post'
-   description: 'One-line summary shown in the list and social previews.'
-   date: 2026-07-06
-   cover: ./my-cover.jpg      # optional; place the image next to the .md file
-   coverAlt: 'Alt text'
-   tags: ['landscape']
-   draft: false               # true = hidden from production, visible in `npm run dev`
-   ---
-   ```
+    ```yaml
+    ---
+    title: 'My post'
+    description: 'One-line summary shown in the list and social previews.'
+    date: 2026-07-06
+    cover: ./my-cover.jpg # optional; place the image next to the .md file
+    coverAlt: 'Alt text'
+    tags: ['landscape']
+    draft: false # true = hidden from production, visible in `npm run dev`
+    ---
+    ```
 
 3. Write the body in Markdown below the frontmatter. It appears at
    `/posts/my-post` and in the list at `/posts`. See

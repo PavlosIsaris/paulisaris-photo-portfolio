@@ -6,44 +6,44 @@ import astroParser from 'astro-eslint-parser';
 import globals from 'globals';
 
 export default [
-	js.configs.recommended,
-	{
-		ignores: ['dist/**', '.astro/**', 'node_modules/**', '.cache/**'],
-	},
-	{
-		files: ['**/*.ts'],
-		languageOptions: {
-			parser: tsParser,
-			parserOptions: {
-				project: './tsconfig.json',
-				sourceType: 'module',
-			},
-			globals: {
-				...globals.node,
-				...globals.browser,
-			},
-		},
-		plugins: {
-			'@typescript-eslint': ts,
-		},
-		rules: {
-			...ts.configs.recommended.rules,
-		},
-	},
+    js.configs.recommended,
+    {
+        ignores: ['dist/**', '.astro/**', 'node_modules/**', '.cache/**'],
+    },
+    {
+        files: ['**/*.ts'],
+        languageOptions: {
+            parser: tsParser,
+            parserOptions: {
+                project: './tsconfig.json',
+                sourceType: 'module',
+            },
+            globals: {
+                ...globals.node,
+                ...globals.browser,
+            },
+        },
+        plugins: {
+            '@typescript-eslint': ts,
+        },
+        rules: {
+            ...ts.configs.recommended.rules,
+        },
+    },
 
-	{
-		files: ['**/*.astro'],
-		languageOptions: {
-			parser: astroParser,
-			parserOptions: {
-				parser: tsParser,
-			},
-		},
-		plugins: {
-			astro: astroPlugin,
-		},
-		rules: {
-			...astroPlugin.configs.recommended.rules,
-		},
-	},
+    {
+        files: ['**/*.astro'],
+        languageOptions: {
+            parser: astroParser,
+            parserOptions: {
+                parser: tsParser,
+            },
+        },
+        plugins: {
+            astro: astroPlugin,
+        },
+        rules: {
+            ...astroPlugin.configs.recommended.rules,
+        },
+    },
 ];

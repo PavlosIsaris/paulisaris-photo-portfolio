@@ -1,26 +1,26 @@
 /* Let the opened image use most of the viewport instead of GLightbox's ~900px box */
 .glightbox-container .ginner-container {
-	max-width: 94vw !important;
-	width: auto !important;
+    max-width: 94vw !important;
+    width: auto !important;
 }
 
 .glightbox-container .gslide-image img {
-	max-width: 94vw;
-	max-height: 92vh;
-	height: auto;
-	width: auto;
-	object-fit: contain;
-	display: block;
+    max-width: 94vw;
+    max-height: 92vh;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .glightbox-container .gslide {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .glightbox-container .gslide-description {
-	max-width: 90%;
-	color: #ccc;
-	font-size: 0.875rem;
+    max-width: 90%;
+    color: #ccc;
+    font-size: 0.875rem;
 }

@@ -13,7 +13,6 @@
 version: 2
 
 updates:
-    
     # ---- JavaScript / npm ----------------------------------------------
     - package-ecosystem: npm
       directory: /

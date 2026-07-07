@@ -1,28 +1,28 @@
 import path from 'path';
 import {
-	type Collection,
-	type GalleryData,
-	type GalleryImage,
-	type Image,
-	type ImageModule,
-	loadGallery,
+    type Collection,
+    type GalleryData,
+    type GalleryImage,
+    type Image,
+    type ImageModule,
+    loadGallery,
 } from './galleryData.ts';
 
 /**
  * Error class for image-related errors
  */
 export class ImageStoreError extends Error {
-	constructor(message: string) {
-		super(message);
-		this.name = 'ImageStoreError';
-	}
+    constructor(message: string) {
+        super(message);
+        this.name = 'ImageStoreError';
+    }
 }
 
 /**
  * Import all images from /src directory
  */
 const imageModules = import.meta.glob('/src/**/*.{jpg,jpeg,png,gif}', {
-	eager: true,
+    eager: true,
 });
 
 const defaultGalleryPath = 'src/gallery/gallery.yaml';
@@ -38,10 +38,10 @@ const builtInCollections = [featuredCollectionId];
  * @property {'asc' | 'desc'} [order] - Sort order, either ascending or descending
  */
 interface GetImagesOptions {
-	galleryPath?: string;
-	collection?: string;
-	sortBy?: 'captureDate';
-	order?: 'asc' | 'desc';
+    galleryPath?: string;
+    collection?: string;
+    sortBy?: 'captureDate';
+    order?: 'asc' | 'desc';
 }
 
 /**
@@ -54,21 +54,21 @@ interface GetImagesOptions {
  * @throws {ImageStoreError} Throws an error if loading the gallery data fails.
  */
 export const getImages = async (options: GetImagesOptions = {}): Promise<Image[]> => {
-	const { galleryPath = defaultGalleryPath, collection } = options;
-	try {
-		let images = (await loadGalleryData(galleryPath)).images;
-		images = filterImagesByCollection(collection, images);
-		images = sortImages(images, options);
-		return processImages(images, galleryPath);
-	} catch (error) {
-		throw new ImageStoreError(
-			`Failed to load images from ${galleryPath}: ${getErrorMsgFrom(error)}`,
-		);
-	}
+    const { galleryPath = defaultGalleryPath, collection } = options;
+    try {
+        let images = (await loadGalleryData(galleryPath)).images;
+        images = filterImagesByCollection(collection, images);
+        images = sortImages(images, options);
+        return processImages(images, galleryPath);
+    } catch (error) {
+        throw new ImageStoreError(
+            `Failed to load images from ${galleryPath}: ${getErrorMsgFrom(error)}`,
+        );
+    }
 };
 
 function getErrorMsgFrom(error: unknown) {
-	return error instanceof Error ? error.message : 'Unknown error';
+    return error instanceof Error ? error.message : 'Unknown error';
 }
 
 /**
@@ -77,50 +77,52 @@ function getErrorMsgFrom(error: unknown) {
  * @param galleryPath
  */
 const loadGalleryData = async (galleryPath: string): Promise<GalleryData> => {
-	try {
-		const gallery = await loadGallery(galleryPath);
-		validateGalleryData(gallery);
-		return gallery;
-	} catch (error) {
-		throw new ImageStoreError(
-			`Failed to load gallery data from ${galleryPath}: ${getErrorMsgFrom(error)}`,
-		);
-	}
+    try {
+        const gallery = await loadGallery(galleryPath);
+        validateGalleryData(gallery);
+        return gallery;
+    } catch (error) {
+        throw new ImageStoreError(
+            `Failed to load gallery data from ${galleryPath}: ${getErrorMsgFrom(error)}`,
+        );
+    }
 };
 
 function filterImagesByCollection(collection: string | undefined, images: GalleryImage[]) {
-	if (collection) {
-		images = images.filter((image) => image.meta.collections.includes(collection));
-	}
-	return images;
+    if (collection) {
+        images = images.filter((image) => image.meta.collections.includes(collection));
+    }
+    return images;
 }
 
 function validateGalleryData(gallery: GalleryData) {
-	const collectionIds = gallery.collections.map((col) => col.id).concat(builtInCollections);
-	for (const image of gallery.images) {
-		const invalidCollections = image.meta.collections.filter((col) => !collectionIds.includes(col));
-		if (invalidCollections.length > 0) {
-			throw new ImageStoreError(
-				`Invalid collection(s) [${invalidCollections.join(', ')}] referenced in image: ${image.path}`,
-			);
-		}
-	}
+    const collectionIds = gallery.collections.map((col) => col.id).concat(builtInCollections);
+    for (const image of gallery.images) {
+        const invalidCollections = image.meta.collections.filter(
+            (col) => !collectionIds.includes(col),
+        );
+        if (invalidCollections.length > 0) {
+            throw new ImageStoreError(
+                `Invalid collection(s) [${invalidCollections.join(', ')}] referenced in image: ${image.path}`,
+            );
+        }
+    }
 }
 
 function sortImages(images: GalleryImage[], options: GetImagesOptions) {
-	const { sortBy, order } = options;
-	let result: GalleryImage[] = images;
-	if (sortBy) {
-		result.sort((a, b) => {
-			const dateA = a.exif?.captureDate?.getTime() || 0;
-			const dateB = b.exif?.captureDate?.getTime() || 0;
-			return dateA - dateB;
-		});
-	}
-	if (order === 'desc') {
-		result.reverse();
-	}
-	return result;
+    const { sortBy, order } = options;
+    let result: GalleryImage[] = images;
+    if (sortBy) {
+        result.sort((a, b) => {
+            const dateA = a.exif?.captureDate?.getTime() || 0;
+            const dateB = b.exif?.captureDate?.getTime() || 0;
+            return dateA - dateB;
+        });
+    }
+    if (order === 'desc') {
+        result.reverse();
+    }
+    return result;
 }
 
 /**
@@ -131,15 +133,15 @@ function sortImages(images: GalleryImage[], options: GetImagesOptions) {
  * @throws {ImageStoreError} If an image module cannot be found
  */
 const processImages = (images: GalleryImage[], galleryPath: string): Image[] => {
-	return images.reduce<Image[]>((acc, imageEntry) => {
-		const imagePath = path.posix.join('/', path.parse(galleryPath).dir, imageEntry.path);
-		try {
-			acc.push(createImageDataFor(imagePath, imageEntry));
-		} catch (error) {
-			console.warn(`[WARN] ${getErrorMsgFrom(error)}`);
-		}
-		return acc;
-	}, []);
+    return images.reduce<Image[]>((acc, imageEntry) => {
+        const imagePath = path.posix.join('/', path.parse(galleryPath).dir, imageEntry.path);
+        try {
+            acc.push(createImageDataFor(imagePath, imageEntry));
+        } catch (error) {
+            console.warn(`[WARN] ${getErrorMsgFrom(error)}`);
+        }
+        return acc;
+    }, []);
 };
 
 /**
@@ -150,19 +152,19 @@ const processImages = (images: GalleryImage[], galleryPath: string): Image[] => 
  * @throws {ImageStoreError} If image module cannot be found
  */
 const createImageDataFor = (imagePath: string, img: GalleryImage): Image => {
-	const imageModule = imageModules[imagePath] as ImageModule | undefined;
+    const imageModule = imageModules[imagePath] as ImageModule | undefined;
 
-	if (!imageModule) {
-		throw new ImageStoreError(`Image not found: ${imagePath}`);
-	}
+    if (!imageModule) {
+        throw new ImageStoreError(`Image not found: ${imagePath}`);
+    }
 
-	return {
-		src: imageModule.default,
-		title: img.meta.title,
-		description: img.meta.description,
-		collections: img.meta.collections,
-		path: img.path,
-	};
+    return {
+        src: imageModule.default,
+        title: img.meta.title,
+        description: img.meta.description,
+        collections: img.meta.collections,
+        path: img.path,
+    };
 };
 
 /**
@@ -177,12 +179,12 @@ const createImageDataFor = (imagePath: string, img: GalleryImage): Image => {
  * @returns {Promise<Image | undefined>} The hero image, or undefined if no images exist.
  */
 export const getHeroImage = async (heroPath?: string): Promise<Image | undefined> => {
-	if (heroPath) {
-		const match = (await getImages()).find((image) => image.path === heroPath);
-		if (match) return match;
-	}
-	const featured = await getImages({ collection: featuredCollectionId });
-	return featured[0];
+    if (heroPath) {
+        const match = (await getImages()).find((image) => image.path === heroPath);
+        if (match) return match;
+    }
+    const featured = await getImages({ collection: featuredCollectionId });
+    return featured[0];
 };
 
 /**
@@ -191,7 +193,7 @@ export const getHeroImage = async (heroPath?: string): Promise<Image | undefined
  * @returns {Promise<Collection[]>} Array of collections
  */
 export const getCollections = async (
-	galleryPath: string = defaultGalleryPath,
+    galleryPath: string = defaultGalleryPath,
 ): Promise<Collection[]> => {
-	return (await loadGalleryData(galleryPath)).collections;
+    return (await loadGalleryData(galleryPath)).collections;
 };

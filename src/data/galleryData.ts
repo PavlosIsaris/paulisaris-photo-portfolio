@@ -8,8 +8,8 @@ import * as yaml from 'js-yaml';
  * @property {Collection[]} collections - Array of collections
  */
 export interface GalleryData {
-	collections: Collection[];
-	images: GalleryImage[];
+    collections: Collection[];
+    images: GalleryImage[];
 }
 
 /**
@@ -18,8 +18,8 @@ export interface GalleryData {
  * @property {GalleryImage[]} getImages - Array of images in the collection
  */
 export interface Collection {
-	id: string;
-	name: string;
+    id: string;
+    name: string;
 }
 
 /**
@@ -30,9 +30,9 @@ export interface Collection {
  * @property {string[]} collections - Array of collection IDs the image belongs to
  */
 export interface GalleryImage {
-	path: string;
-	meta: Meta;
-	exif?: ImageExif;
+    path: string;
+    meta: Meta;
+    exif?: ImageExif;
 }
 
 /**
@@ -43,9 +43,9 @@ export interface GalleryImage {
  * @property {string[]} collections - Array of collection IDs the image belongs to
  */
 export interface Meta {
-	title: string;
-	description: string;
-	collections: string[];
+    title: string;
+    description: string;
+    collections: string[];
 }
 
 /**
@@ -59,13 +59,13 @@ export interface Meta {
  * @property {string} [lensModel] - Lens model
  */
 export interface ImageExif {
-	focalLength?: number;
-	iso?: number;
-	fNumber?: number;
-	shutterSpeed?: number;
-	captureDate?: Date;
-	model?: string;
-	lensModel?: string;
+    focalLength?: number;
+    iso?: number;
+    fNumber?: number;
+    shutterSpeed?: number;
+    captureDate?: Date;
+    model?: string;
+    lensModel?: string;
 }
 
 /**
@@ -76,12 +76,12 @@ export interface ImageExif {
  * @property {string[]} collections - Array of collection IDs the image belongs to
  */
 export interface Image {
-	src: ImageMetadata;
-	title: string;
-	description: string;
-	collections: string[];
-	/** Gallery-relative path (e.g. "noplace/Project_2026_010.jpg"), matches gallery.yaml */
-	path: string;
+    src: ImageMetadata;
+    title: string;
+    description: string;
+    collections: string[];
+    /** Gallery-relative path (e.g. "noplace/Project_2026_010.jpg"), matches gallery.yaml */
+    path: string;
 }
 
 /**
@@ -91,12 +91,12 @@ export interface Image {
 export type ImageModule = { default: ImageMetadata };
 
 export const loadGallery = async (galleryPath: string): Promise<GalleryData> => {
-	const yamlPath = path.resolve(process.cwd(), galleryPath);
-	const content = await fs.readFile(yamlPath, 'utf8');
-	return yaml.load(content) as GalleryData;
+    const yamlPath = path.resolve(process.cwd(), galleryPath);
+    const content = await fs.readFile(yamlPath, 'utf8');
+    return yaml.load(content) as GalleryData;
 };
 
 export const NullGalleryData: GalleryData = {
-	collections: [],
-	images: [],
+    collections: [],
+    images: [],
 };
