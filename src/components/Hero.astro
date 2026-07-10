@@ -33,10 +33,17 @@ const hero = await getHeroImage(siteConfig.heroImage);
 		<div class="mt-6 h-px w-16 bg-white/30"></div>
 		<a
 			href={`${base}collections`}
-			class="cta-link mt-8 border px-8 py-4 text-white/90 hover:text-brand text-2xl transition-colors duration-300"
+			class="cta-link mt-8 w-90 mb-3 border px-8 py-4 text-center text-white/90 hover:text-brand text-2xl transition-colors duration-300"
 			style="border-color: hsl(240, 0%, 46%);"
 		>
 			View Gallery <span class="cta-arrow">&rarr;</span>
+		</a>
+		<a
+			href="#albums"
+			class="cta-link mt-4 w-90 border px-8 py-4 text-center text-white/90 hover:text-brand text-2xl transition-colors duration-300"
+			style="border-color: hsl(240, 0%, 46%);"
+		>
+			View Albums <span class="cta-arrow">&rarr;</span>
 		</a>
 	</div>
 </section>

@@ -31,6 +31,12 @@
         --brand-strong: 36 38% 34%;
     }
 
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+
     body {
         @apply bg-background text-foreground font-sans;
         font-family: 'Inter', sans-serif;
