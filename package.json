@@ -10,7 +10,8 @@
         "format": "prettier . --write",
         "test": "vitest",
         "lint": "eslint . --ext .ts,.js,.astro",
-        "generate": "npx tsx src/data/gallery-generator.ts src/gallery"
+        "generate": "npx tsx src/data/gallery-generator.ts src/gallery",
+        "flipbook": "npx tsx src/data/flipbook-generator.ts"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.20",
@@ -33,9 +34,12 @@
         "js-yaml": "^4.3.0",
         "justified-layout": "^4.1.0",
         "lucide-astro": "^0.556.0",
+        "page-flip": "^2.0.7",
+        "pdf-to-img": "^6.2.0",
         "prettier": "3.9.4",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-tailwindcss": "0.8.0",
+        "sharp": "^0.35.3",
         "tailwindcss": "^4.3.2",
         "tsx": "^4.22.4",
         "vitest": "^3.2.6"

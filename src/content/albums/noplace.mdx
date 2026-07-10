@@ -8,9 +8,12 @@ order: 1
 videos:
     - { lang: en, url: 'https://www.youtube.com/watch?v=zw5C_J8DozI' }
     - { lang: el, url: 'https://www.youtube.com/watch?v=0GDaew5HehI' }
+# `flipbook` is the id of a folder generated under public/flipbooks/ by `npm run flipbook`
+# (source PDF: flipbooks-src/<id>.pdf). `url` is an optional fallback link shown until the
+# flipbook images are generated.
 pdfs:
-    - { lang: en, url: 'https://example.com/noplace-en', label: 'Flip through the album' }
-    - { lang: el, url: 'https://example.com/noplace-el', label: 'Ξεφυλλίστε το άλμπουμ' }
+    - { lang: en, flipbook: 'noplace-en', label: 'Flip through the album' }
+    - { lang: el, flipbook: 'noplace-el', label: 'Ξεφυλλιστε το αλμπουμ' }
 draft: false
 ---
 

@@ -88,6 +88,11 @@
         font-family: 'Playfair Display', serif;
         @apply inline-flex items-center gap-2 text-sm font-medium tracking-[0.22em] uppercase transition-colors duration-300;
         color: hsl(var(--brand));
+        font-weight: 600;
+    }
+
+    .cta-link:hover {
+        cursor: pointer;
     }
 
     .cta-link svg,

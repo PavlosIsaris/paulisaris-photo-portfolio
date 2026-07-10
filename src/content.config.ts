@@ -50,7 +50,13 @@ const albums = defineCollection({
             .array(
                 z.object({
                     lang: z.enum(['en', 'el']),
-                    url: z.string().url(),
+                    // id of a flipbook generated under public/flipbooks/<id> (see
+                    // `npm run flipbook`). When set, the album shows an on-site
+                    // page-turning flipbook instead of a plain link.
+                    flipbook: z.string().optional(),
+                    // Optional external URL — used as the link/fallback when there is no
+                    // flipbook (or its images haven't been generated yet).
+                    url: z.string().url().optional(),
                     label: z.string().optional(),
                 }),
             )

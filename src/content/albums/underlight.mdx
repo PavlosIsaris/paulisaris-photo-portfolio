@@ -7,9 +7,11 @@ cover: underlight/001.jpg
 order: 2
 videos:
     - { lang: en, url: 'https://www.youtube.com/watch?v=zHV6JYYHlBY' }
+# One flipbook PDF: flipbooks-src/underlight.pdf → id "underlight". If you later add a
+# separate Greek edition, name it flipbooks-src/underlight-el.pdf and add a second entry
+# with flipbook: 'underlight-el'.
 pdfs:
-    - { lang: en, url: 'https://example.com/underlight-en', label: 'Flip through the album' }
-    - { lang: el, url: 'https://example.com/underlight-el', label: 'Ξεφυλλίστε το άλμπουμ' }
+    - { lang: en, flipbook: 'underlight', label: 'Flip through the album' }
 # Kept as a draft until underlight photos exist in src/gallery/underlight/.
 draft: false
 ---

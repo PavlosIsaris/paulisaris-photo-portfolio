@@ -6,7 +6,14 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import PhotoGrid from '../../components/PhotoGrid.astro';
 import AlbumText from '../../components/AlbumText.astro';
 import YouTubeLink from '../../components/YouTubeLink.astro';
+import Flipbook from '../../components/Flipbook.astro';
+import flipbooksData from '../../data/flipbooks.json';
 import { getImages, getImageByPath } from '../../data/imageStore';
+
+const flipbooks = flipbooksData as Record<
+	string,
+	{ pages: number; width: number; height: number }
+>;
 
 export const getStaticPaths = (async () => {
 	const albums = await getCollection('albums', ({ data }) =>
@@ -93,17 +100,32 @@ const langLabel = (lang: 'en' | 'el') => (lang === 'el' ? 'Ελληνικά' : '
 				<div class="container-custom text-center">
 					<h2 class="mb-8 text-3xl font-bold md:text-4xl">Publication</h2>
 					<div class="flex flex-wrap justify-center gap-6">
-						{pdfs.map((pdf) => (
-							<a
-								href={pdf.url}
-								target="_blank"
-								rel="noopener"
-								class="cta-link border border-gray-300 px-8 py-4 text-base text-gray-900 hover:text-brand"
-							>
-								{pdf.label ?? `Flip through the album (${langLabel(pdf.lang)})`}
-								<span class="cta-arrow">&rarr;</span>
-							</a>
-						))}
+						{pdfs.map((pdf) => {
+							const label = pdf.label ?? `Flip through the album (${langLabel(pdf.lang)})`;
+							const book = pdf.flipbook ? flipbooks[pdf.flipbook] : undefined;
+							if (pdf.flipbook && book) {
+								return (
+									<Flipbook
+										id={pdf.flipbook}
+										pages={book.pages}
+										width={book.width}
+										height={book.height}
+										label={label}
+									/>
+								);
+							}
+							return pdf.url ? (
+								<a
+									href={pdf.url}
+									target="_blank"
+									rel="noopener"
+									class="cta-link text-xl border border-gray-300 px-8 py-4 text-gray-900 hover:text-brand font-weight-bold"
+								>
+									{label}
+									<span class="cta-arrow">&rarr;</span>
+								</a>
+							) : null;
+						})}
 					</div>
 				</div>
 			</section>
