@@ -22,10 +22,7 @@ const { album } = Astro.props;
 const { title, description, galleryCollection, cover: coverPath, videos, pdfs } = album.data;
 
 const cover = await getImageByPath(coverPath);
-// The cover leads the hero — don't repeat it in the photo grid below.
-const images = (await getImages({ collection: galleryCollection })).filter(
-	(image) => image.path !== coverPath,
-);
+const images = await getImages({ collection: galleryCollection });
 const { Content } = await render(album);
 
 const langLabel = (lang: 'en' | 'el') => (lang === 'el' ? 'Ελληνικά' : 'English');
