@@ -2,6 +2,7 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Hero from '../components/Hero.astro';
 import FeaturedGallery from '../components/FeaturedGallery.astro';
+import AlbumsShowcase from '../components/AlbumsShowcase.astro';
 ---
 
 <MainLayout>
@@ -9,5 +10,15 @@ import FeaturedGallery from '../components/FeaturedGallery.astro';
 
 	<section class="featured-section py-24">
 		<FeaturedGallery />
+	</section>
+
+	<section class="py-24">
+		<div class="container-custom">
+			<div class="mb-14 text-center">
+				<h3 class="eyebrow text-xl" style="color: hsl(var(--brand-strong));">Curated Projects</h3>
+				<h2 class="mt-3 text-3xl font-bold md:text-4xl">Albums</h2>
+			</div>
+			<AlbumsShowcase />
+		</div>
 	</section>
 </MainLayout>

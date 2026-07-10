@@ -1,0 +1,133 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import MainLayout from '../../layouts/MainLayout.astro';
+import PhotoGrid from '../../components/PhotoGrid.astro';
+import AlbumText from '../../components/AlbumText.astro';
+import YouTubeLink from '../../components/YouTubeLink.astro';
+import { getImages, getImageByPath } from '../../data/imageStore';
+
+export const getStaticPaths = (async () => {
+	const albums = await getCollection('albums', ({ data }) =>
+		import.meta.env.PROD ? !data.draft : true,
+	);
+	return albums.map((album) => ({
+		params: { album: album.id },
+		props: { album },
+	}));
+}) satisfies GetStaticPaths;
+
+const { album } = Astro.props;
+const { title, description, galleryCollection, cover: coverPath, videos, pdfs } = album.data;
+
+const cover = await getImageByPath(coverPath);
+// The cover leads the hero — don't repeat it in the photo grid below.
+const images = (await getImages({ collection: galleryCollection })).filter(
+	(image) => image.path !== coverPath,
+);
+const { Content } = await render(album);
+
+const langLabel = (lang: 'en' | 'el') => (lang === 'el' ? 'Ελληνικά' : 'English');
+---
+
+<MainLayout title={title} description={description} image={cover?.src.src}>
+	<!-- Split hero: cover image beside the album title -->
+	<section class="pt-28 pb-8 md:pt-32">
+		<div class="container-custom">
+			{
+				cover ? (
+					<div class="grid items-center gap-10 md:grid-cols-2 md:gap-14">
+						<Image
+							src={cover.src}
+							quality={90}
+							format="webp"
+							width={cover.src.width}
+							height={cover.src.height}
+							alt={cover.title}
+							class="h-auto w-full rounded-lg shadow-lg"
+						/>
+						<div>
+							<h3 class="eyebrow text-xl" style="color: hsl(var(--brand-strong));">Album</h3>
+							<h1 class="mt-4 text-4xl font-bold md:text-6xl">{title}</h1>
+							<p class="mt-6 text-lg text-gray-600 md:text-xl">{description}</p>
+						</div>
+					</div>
+				) : (
+					<div class="mx-auto max-w-2xl text-center">
+						<h3 class="eyebrow text-xl" style="color: hsl(var(--brand-strong));">Album</h3>
+						<h1 class="mt-4 text-4xl font-bold md:text-6xl">{title}</h1>
+						<p class="mt-6 text-lg text-gray-600 md:text-xl">{description}</p>
+					</div>
+				)
+			}
+		</div>
+	</section>
+
+	<!-- Videos -->
+	{
+		videos.length > 0 && (
+			<section class="py-16">
+				<div class="container-custom max-w-5xl">
+					<div class="mb-10 text-center">
+						<h2 class="text-3xl font-bold md:text-4xl">Video</h2>
+					</div>
+					<div class={videos.length === 1 ? 'mx-auto max-w-2xl' : 'grid gap-8 md:grid-cols-2'}>
+						{videos.map((video) => (
+							<figure>
+								<YouTubeLink url={video.url} title={video.title ?? `${title} — ${langLabel(video.lang)}`} />
+								{videos.length > 1 && (
+									<figcaption class="mt-3 text-base uppercase tracking-[0.18em] text-gray-500">
+										{video.title ?? langLabel(video.lang)}
+									</figcaption>
+								)}
+							</figure>
+						))}
+					</div>
+				</div>
+			</section>
+		)
+	}
+
+	<!-- PDF-flip links -->
+	{
+		pdfs.length > 0 && (
+			<section class="pb-16">
+				<div class="container-custom text-center">
+					<h2 class="mb-8 text-3xl font-bold md:text-4xl">Publication</h2>
+					<div class="flex flex-wrap justify-center gap-6">
+						{pdfs.map((pdf) => (
+							<a
+								href={pdf.url}
+								target="_blank"
+								rel="noopener"
+								class="cta-link border border-gray-300 px-8 py-4 text-base text-gray-900 hover:text-brand"
+							>
+								{pdf.label ?? `Flip through the album (${langLabel(pdf.lang)})`}
+								<span class="cta-arrow">&rarr;</span>
+							</a>
+						))}
+					</div>
+				</div>
+			</section>
+		)
+	}
+
+	<!-- Texts (EN / EL blocks authored in the album MDX body) — side by side -->
+	<section class="py-16">
+		<div class="container-custom grid gap-12 md:grid-cols-2 md:gap-16">
+			<Content components={{ AlbumText }} />
+		</div>
+	</section>
+
+	<!-- Photo grid -->
+	{
+		images.length > 0 && (
+			<section class="pb-16">
+				<div class="w-full px-4 sm:px-8 lg:px-16">
+					<PhotoGrid images={images} />
+				</div>
+			</section>
+		)
+	}
+</MainLayout>

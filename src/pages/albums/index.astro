@@ -1,0 +1,17 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import AlbumsShowcase from '../../components/AlbumsShowcase.astro';
+---
+
+<MainLayout title="Albums" description="Curated photographic projects — series, texts and films.">
+	<section class="py-16 pt-24">
+		<div class="container-custom">
+			<div class="mb-16 text-center">
+				<h1 class="mb-4 text-4xl font-bold md:text-5xl">Albums</h1>
+				<p class="mx-auto max-w-xl text-gray-600">Curated projects — photographs, words and film</p>
+			</div>
+
+			<AlbumsShowcase />
+		</div>
+	</section>
+</MainLayout>
