@@ -1,13 +1,25 @@
 ---
-import siteConfig from '../../site.config.mjs';
+import { getCollection } from 'astro:content';
+import siteConfig from '../../site.config.mts';
 import SocialIcon from './SocialIcon.astro';
 
 const title = siteConfig.title;
 
 const base = import.meta.env.BASE_URL;
+
+// Albums drive the nav dropdown; drafts show in dev, hidden in production.
+const albums = (
+	await getCollection('albums', ({ data }) => (import.meta.env.PROD ? !data.draft : true))
+).sort((a, b) => a.data.order - b.data.order);
+const albumSubitems = albums.map((album) => ({
+	name: album.data.title,
+	link: `${base}albums/${album.id}`,
+}));
+
 const menuItems = [
-	{ name: 'Gallery', link: `${base}collections` },
-	{ name: 'About', link: `${base}about` },
+	{ name: 'Albums', link: `${base}albums`, subitems: albumSubitems },
+	{ name: 'Gallery', link: `${base}collections`, subitems: [] },
+	{ name: 'About', link: `${base}about`, subitems: [] },
 ];
 
 const instagram = siteConfig.socialLinks.find((s) => s.name === 'Instagram');
@@ -25,14 +37,48 @@ const instagram = siteConfig.socialLinks.find((s) => s.name === 'Instagram');
 		<!-- Desktop Menu -->
 		<div class="hidden md:flex items-center divide-x divide-gray-300">
 			{
-				menuItems.map((item) => (
-					<a
-						href={item.link}
-						class="px-5 text-sm uppercase tracking-[0.18em] text-gray-700 hover:text-brand transition-colors duration-300"
-					>
-						{item.name}
-					</a>
-				))
+				menuItems.map((item) =>
+					item.subitems.length > 0 ? (
+						<div
+							class="relative"
+							x-data="{ open: false }"
+							@mouseenter="open = true"
+							@mouseleave="open = false"
+						>
+							<a
+								href={item.link}
+								class="flex items-center gap-1 px-5 text-sm uppercase tracking-[0.18em] text-gray-700 hover:text-brand transition-colors duration-300"
+							>
+								{item.name}
+								<svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+								</svg>
+							</a>
+							<div
+								x-show="open"
+								x-transition
+								style="display: none"
+								class="absolute left-0 top-full min-w-[12rem] bg-white border border-gray-200 shadow-md py-3"
+							>
+								{item.subitems.map((sub) => (
+									<a
+										href={sub.link}
+										class="block px-5 py-2 text-sm uppercase tracking-[0.18em] text-gray-700 hover:text-brand transition-colors duration-300"
+									>
+										{sub.name}
+									</a>
+								))}
+							</div>
+						</div>
+					) : (
+						<a
+							href={item.link}
+							class="px-5 text-sm uppercase tracking-[0.18em] text-gray-700 hover:text-brand transition-colors duration-300"
+						>
+							{item.name}
+						</a>
+					),
+				)
 			}
 			{
 				instagram && (
@@ -71,13 +117,24 @@ const instagram = siteConfig.socialLinks.find((s) => s.name === 'Instagram');
 		<div class="flex flex-col py-4 px-6 space-y-4">
 			{
 				menuItems.map((item) => (
-					<a
-						href={item.link}
-						class="text-sm uppercase tracking-[0.18em] text-gray-700"
-						@click="isOpen = false"
-					>
-						{item.name}
-					</a>
+					<>
+						<a
+							href={item.link}
+							class="text-sm uppercase tracking-[0.18em] text-gray-700"
+							@click="isOpen = false"
+						>
+							{item.name}
+						</a>
+						{item.subitems.map((sub) => (
+							<a
+								href={sub.link}
+								class="pl-4 text-sm uppercase tracking-[0.18em] text-gray-500"
+								@click="isOpen = false"
+							>
+								{sub.name}
+							</a>
+						))}
+					</>
 				))
 			}
 			{

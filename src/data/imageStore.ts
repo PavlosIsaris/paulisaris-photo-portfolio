@@ -179,12 +179,22 @@ const createImageDataFor = (imagePath: string, img: GalleryImage): Image => {
  * @returns {Promise<Image | undefined>} The hero image, or undefined if no images exist.
  */
 export const getHeroImage = async (heroPath?: string): Promise<Image | undefined> => {
-    if (heroPath) {
-        const match = (await getImages()).find((image) => image.path === heroPath);
-        if (match) return match;
-    }
+    const match = await getImageByPath(heroPath);
+    if (match) return match;
     const featured = await getImages({ collection: featuredCollectionId });
     return featured[0];
+};
+
+/**
+ * Finds a single processed image by its gallery-relative path (as written in
+ * gallery.yaml, e.g. "noplace/Project_2026_021.jpg").
+ *
+ * @param {string} [path] - Gallery-relative path of the desired image.
+ * @returns {Promise<Image | undefined>} The matching image, or undefined.
+ */
+export const getImageByPath = async (path?: string): Promise<Image | undefined> => {
+    if (!path) return undefined;
+    return (await getImages()).find((image) => image.path === path);
 };
 
 /**

@@ -1,357 +1,1224 @@
 collections:
-    - id: noplace
-      name: No Place
+  - id: noplace
+    name: No Place
+  - id: underlight
+    name: Underlight
 images:
-    - path: noplace/Project_2026_001.jpg
-      meta:
-          title: No Place 001
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_003.jpg
-      meta:
-          title: No Place 003
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_004.jpg
-      meta:
-          title: No Place 004
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_005.jpg
-      meta:
-          title: No Place 005
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_006.jpg
-      meta:
-          title: No Place 006
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_007.jpg
-      meta:
-          title: No Place 007
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_008.jpg
-      meta:
-          title: No Place 008
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_009.jpg
-      meta:
-          title: No Place 009
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_010.jpg
-      meta:
-          title: No Place 010
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_011.jpg
-      meta:
-          title: No Place 011
-          description: null
-          collections:
-              - noplace
-              - featured
-      exif: {}
-    - path: noplace/Project_2026_012.jpg
-      meta:
-          title: No Place 012
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_013.jpg
-      meta:
-          title: No Place 013
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_014.jpg
-      meta:
-          title: No Place 014
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_015.jpg
-      meta:
-          title: No Place 015
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_016.jpg
-      meta:
-          title: No Place 016
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_017.jpg
-      meta:
-          title: No Place 017
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_018.jpg
-      meta:
-          title: No Place 018
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_019.jpg
-      meta:
-          title: No Place 019
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_021.jpg
-      meta:
-          title: No Place 021
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_023.jpg
-      meta:
-          title: No Place 023
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_024.jpg
-      meta:
-          title: No Place 024
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_025.jpg
-      meta:
-          title: No Place 025
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_026.jpg
-      meta:
-          title: No Place 026
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_027.jpg
-      meta:
-          title: No Place 027
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_028.jpg
-      meta:
-          title: No Place 028
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_029.jpg
-      meta:
-          title: No Place 029
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_030.jpg
-      meta:
-          title: No Place 030
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_031.jpg
-      meta:
-          title: No Place 031
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_032.jpg
-      meta:
-          title: No Place 032
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_033.jpg
-      meta:
-          title: No Place 033
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_034.jpg
-      meta:
-          title: No Place 034
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_035.jpg
-      meta:
-          title: No Place 035
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_036.jpg
-      meta:
-          title: No Place 036
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_037.jpg
-      meta:
-          title: No Place 037
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_038.jpg
-      meta:
-          title: No Place 038
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_039.jpg
-      meta:
-          title: No Place 039
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_041.jpg
-      meta:
-          title: No Place 041
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_042.jpg
-      meta:
-          title: No Place 042
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_043.jpg
-      meta:
-          title: No Place 043
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_044.jpg
-      meta:
-          title: No Place 044
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_045.jpg
-      meta:
-          title: No Place 045
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_046.jpg
-      meta:
-          title: No Place 046
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_047.jpg
-      meta:
-          title: No Place 047
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_049.jpg
-      meta:
-          title: No Place 049
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_050.jpg
-      meta:
-          title: No Place 050
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_051.jpg
-      meta:
-          title: No Place 051
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_052.jpg
-      meta:
-          title: No Place 052
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_053.jpg
-      meta:
-          title: No Place 053
-          description: null
-          collections:
-              - noplace
-      exif: {}
-    - path: noplace/Project_2026_054.jpg
-      meta:
-          title: No Place 054
-          description: null
-          collections:
-              - noplace
-      exif: {}
+  - path: noplace/Project_2026_001.jpg
+    meta:
+      title: No Place 001
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-08T20:55:49.000Z
+      fNumber: 4
+      focalLength: 18
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 8
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_003.jpg
+    meta:
+      title: No Place 003
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-12-14T14:36:16.000Z
+      fNumber: 3.2
+      focalLength: 18.3
+      iso: 200
+      model: RICOH GR III
+      shutterSpeed: 80
+      lensModel: GR LENS 18.3mm F2.8
+  - path: noplace/Project_2026_004.jpg
+    meta:
+      title: No Place 004
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-11-29T14:04:11.000Z
+      fNumber: 3.2
+      focalLength: 18.3
+      iso: 200
+      model: RICOH GR III
+      shutterSpeed: 500
+      lensModel: GR LENS 18.3mm F2.8
+  - path: noplace/Project_2026_005.jpg
+    meta:
+      title: No Place 005
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-10-05T16:05:27.000Z
+      fNumber: 4
+      focalLength: 50
+      iso: 160
+      model: Canon EOS R8
+      shutterSpeed: 200
+      lensModel: RF50mm F1.8 STM
+  - path: noplace/Project_2026_006.jpg
+    meta:
+      title: No Place 006
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-12-14T17:24:29.000Z
+      fNumber: 3.5
+      focalLength: 18.3
+      iso: 200
+      model: RICOH GR III
+      shutterSpeed: 500
+      lensModel: GR LENS 18.3mm F2.8
+  - path: noplace/Project_2026_007.jpg
+    meta:
+      title: No Place 007
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-12-08T19:18:38.000Z
+      fNumber: 2.8
+      focalLength: 18.3
+      iso: 6400
+      model: RICOH GR III
+      shutterSpeed: 500
+      lensModel: GR LENS 18.3mm F2.8
+  - path: noplace/Project_2026_008.jpg
+    meta:
+      title: No Place 008
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-03-03T16:12:39.000Z
+      fNumber: 6.3
+      focalLength: 24
+      iso: 100
+      model: Canon EOS R8
+      shutterSpeed: 1600
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_009.jpg
+    meta:
+      title: No Place 009
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-21T15:46:14.000Z
+      fNumber: 14
+      focalLength: 23
+      iso: 800
+      model: NIKON D3500
+      shutterSpeed: 200
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_010.jpg
+    meta:
+      title: No Place 010
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-21T15:01:41.000Z
+      fNumber: 5.6
+      focalLength: 18
+      iso: 200
+      model: NIKON D3500
+      shutterSpeed: 200
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_011.jpg
+    meta:
+      title: No Place 011
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-03-03T16:12:23.000Z
+      fNumber: 4
+      focalLength: 24
+      iso: 100
+      model: Canon EOS R8
+      shutterSpeed: 4000
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_012.jpg
+    meta:
+      title: No Place 012
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-03-03T16:31:26.000Z
+      fNumber: 7.1
+      focalLength: 24
+      iso: 160
+      model: Canon EOS R8
+      shutterSpeed: 1250
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_013.jpg
+    meta:
+      title: No Place 013
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-04-18T14:37:12.000Z
+      fNumber: 10
+      focalLength: 27
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 125
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_014.jpg
+    meta:
+      title: No Place 014
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-08T20:54:33.000Z
+      fNumber: 4
+      focalLength: 18
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 8
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_015.jpg
+    meta:
+      title: No Place 015
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-20T21:13:45.000Z
+      fNumber: 4.5
+      focalLength: 18
+      iso: 800
+      model: NIKON D3500
+      shutterSpeed: 800
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_016.jpg
+    meta:
+      title: No Place 016
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-08T21:11:25.000Z
+      fNumber: 4
+      focalLength: 21
+      iso: 800
+      model: NIKON D3500
+      shutterSpeed: 10
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_017.jpg
+    meta:
+      title: No Place 017
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-19T19:09:55.000Z
+      fNumber: 2.2
+      focalLength: 35
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 200
+      lensModel: 35.0 mm f/1.8
+  - path: noplace/Project_2026_018.jpg
+    meta:
+      title: No Place 018
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-20T16:31:07.000Z
+      fNumber: 5.6
+      focalLength: 46
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 80
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_019.jpg
+    meta:
+      title: No Place 019
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-05-16T17:23:28.000Z
+      fNumber: 5.6
+      focalLength: 45
+      iso: 100
+      model: Canon EOS R8
+      shutterSpeed: 40
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_021.jpg
+    meta:
+      title: No Place 021
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-03-03T17:59:14.000Z
+      fNumber: 9
+      focalLength: 45
+      iso: 160
+      model: Canon EOS R8
+      shutterSpeed: 400
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_023.jpg
+    meta:
+      title: No Place 023
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-03-03T17:57:10.000Z
+      fNumber: 7.1
+      focalLength: 97
+      iso: 320
+      model: Canon EOS R8
+      shutterSpeed: 400
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_024.jpg
+    meta:
+      title: No Place 024
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-05-15T15:18:45.000Z
+      fNumber: 22
+      focalLength: 35
+      iso: 2500
+      model: Canon EOS R8
+      shutterSpeed: 250
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_025.jpg
+    meta:
+      title: No Place 025
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-17T11:48:01.000Z
+      fNumber: 7.1
+      focalLength: 40
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 200
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_026.jpg
+    meta:
+      title: No Place 026
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-21T11:25:28.000Z
+      fNumber: 3.8
+      focalLength: 21
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 80
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_027.jpg
+    meta:
+      title: No Place 027
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-20T21:24:02.000Z
+      fNumber: 4.5
+      focalLength: 18
+      iso: 800
+      model: NIKON D3500
+      shutterSpeed: 640
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_028.jpg
+    meta:
+      title: No Place 028
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-20T21:24:45.000Z
+      fNumber: 4.5
+      focalLength: 24
+      iso: 800
+      model: NIKON D3500
+      shutterSpeed: 125
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_029.jpg
+    meta:
+      title: No Place 029
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-08T21:30:59.000Z
+      fNumber: 4
+      focalLength: 27
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 60
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_030.jpg
+    meta:
+      title: No Place 030
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-09-10T20:29:18.000Z
+      fNumber: 1.8
+      focalLength: 50
+      iso: 640
+      model: Canon EOS R8
+      shutterSpeed: 100
+      lensModel: RF50mm F1.8 STM
+  - path: noplace/Project_2026_031.jpg
+    meta:
+      title: No Place 031
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-18T10:03:41.000Z
+      fNumber: 9
+      focalLength: 18
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 50
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_032.jpg
+    meta:
+      title: No Place 032
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-21T20:35:49.000Z
+      fNumber: 5
+      focalLength: 42
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 640
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_033.jpg
+    meta:
+      title: No Place 033
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-18T12:07:36.000Z
+      fNumber: 4
+      focalLength: 50
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 250
+      lensModel: 50.0 mm f/1.8
+  - path: noplace/Project_2026_034.jpg
+    meta:
+      title: No Place 034
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-18T12:15:07.000Z
+      fNumber: 4
+      focalLength: 50
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 40
+      lensModel: 50.0 mm f/1.8
+  - path: noplace/Project_2026_035.jpg
+    meta:
+      title: No Place 035
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-18T12:15:34.000Z
+      fNumber: 4
+      focalLength: 50
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 40
+      lensModel: 50.0 mm f/1.8
+  - path: noplace/Project_2026_036.jpg
+    meta:
+      title: No Place 036
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2023-01-22T15:07:15.000Z
+      fNumber: 22
+      focalLength: 40
+      iso: 6400
+      model: NIKON D3500
+      shutterSpeed: 6
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_037.jpg
+    meta:
+      title: No Place 037
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-21T14:58:39.000Z
+      fNumber: 5.6
+      focalLength: 18
+      iso: 200
+      model: NIKON D3500
+      shutterSpeed: 60
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_038.jpg
+    meta:
+      title: No Place 038
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2023-11-12T12:39:54.000Z
+      fNumber: 4.5
+      focalLength: 24
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 500
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_039.jpg
+    meta:
+      title: No Place 039
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2023-01-22T15:48:21.000Z
+      fNumber: 13
+      focalLength: 22
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 3
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_041.jpg
+    meta:
+      title: No Place 041
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-09-10T20:29:35.000Z
+      fNumber: 1.8
+      focalLength: 50
+      iso: 640
+      model: Canon EOS R8
+      shutterSpeed: 100
+      lensModel: RF50mm F1.8 STM
+  - path: noplace/Project_2026_042.jpg
+    meta:
+      title: No Place 042
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-23T16:56:13.000Z
+      fNumber: 5
+      focalLength: 18
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 125
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_043.jpg
+    meta:
+      title: No Place 043
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-18T09:04:48.000Z
+      fNumber: 5.3
+      focalLength: 48
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 200
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_044.jpg
+    meta:
+      title: No Place 044
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-11-29T14:03:16.000Z
+      fNumber: 8
+      focalLength: 18.3
+      iso: 200
+      model: RICOH GR III
+      shutterSpeed: 500
+      lensModel: GR LENS 18.3mm F2.8
+  - path: noplace/Project_2026_045.jpg
+    meta:
+      title: No Place 045
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-05-16T15:09:05.000Z
+      fNumber: 6.3
+      focalLength: 33
+      iso: 1600
+      model: Canon EOS R8
+      shutterSpeed: 250
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_046.jpg
+    meta:
+      title: No Place 046
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-05-15T15:53:35.000Z
+      fNumber: 4
+      focalLength: 35
+      iso: 1250
+      model: Canon EOS R8
+      shutterSpeed: 250
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_047.jpg
+    meta:
+      title: No Place 047
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-05-18T15:04:14.000Z
+      fNumber: 22
+      focalLength: 24
+      iso: 100
+      model: Canon EOS R8
+      shutterSpeed: 10
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_049.jpg
+    meta:
+      title: No Place 049
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-06-23T17:04:32.000Z
+      fNumber: 5
+      focalLength: 31
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 100
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_050.jpg
+    meta:
+      title: No Place 050
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-17T13:51:58.000Z
+      fNumber: 5.6
+      focalLength: 55
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 160
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_051.jpg
+    meta:
+      title: No Place 051
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-18T09:12:58.000Z
+      fNumber: 5.6
+      focalLength: 55
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 250
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_052.jpg
+    meta:
+      title: No Place 052
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-05-18T10:12:26.000Z
+      fNumber: 4.5
+      focalLength: 32
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 320
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: noplace/Project_2026_053.jpg
+    meta:
+      title: No Place 053
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2026-05-14T17:29:50.000Z
+      fNumber: 4
+      focalLength: 37
+      iso: 250
+      model: Canon EOS R8
+      shutterSpeed: 200
+      lensModel: RF24-105mm F4 L IS USM
+  - path: noplace/Project_2026_054.jpg
+    meta:
+      title: No Place 054
+      description: null
+      collections:
+        - noplace
+    exif:
+      captureDate: 2025-11-08T14:15:01.000Z
+      fNumber: 4
+      focalLength: 18.3
+      iso: 200
+      model: RICOH GR III
+      shutterSpeed: 500
+      lensModel: GR LENS 18.3mm F2.8
+  - path: underlight/001.jpg
+    meta:
+      title: '001'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-05-05T12:55:47.000Z
+      fNumber: 6.3
+      focalLength: 72
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 400
+      lensModel: 70.0-300.0 mm f/4.5-6.3
+  - path: underlight/002.jpg
+    meta:
+      title: '002'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-01-05T17:16:31.000Z
+      fNumber: 6.3
+      focalLength: 21
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 800
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/003.jpg
+    meta:
+      title: '003'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2025-03-09T14:15:29.000Z
+      fNumber: 13
+      focalLength: 32
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 320
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/004.jpg
+    meta:
+      title: '004'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2025-03-09T14:10:31.000Z
+      fNumber: 13
+      focalLength: 38
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 160
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/005.jpg
+    meta:
+      title: '005'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2025-01-14T14:20:30.000Z
+      fNumber: 10
+      focalLength: 42
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 400
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/006.jpg
+    meta:
+      title: '006'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-02-16T20:49:30.000Z
+      fNumber: 5.3
+      focalLength: 48
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 13
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/007.jpg
+    meta:
+      title: '007'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-05-04T14:04:41.000Z
+      fNumber: 5.3
+      focalLength: 46
+      iso: 200
+      model: NIKON D3500
+      shutterSpeed: 800
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/008.jpg
+    meta:
+      title: '008'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-02-16T20:33:28.000Z
+      fNumber: 4
+      focalLength: 27
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 60
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/009.jpg
+    meta:
+      title: '009'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-01-07T11:43:31.000Z
+      fNumber: 6.3
+      focalLength: 55
+      iso: 3200
+      model: NIKON D3500
+      shutterSpeed: 4000
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/010.jpg
+    meta:
+      title: '010'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-04-24T07:35:37.000Z
+      fNumber: 4.5
+      focalLength: 18
+      iso: 12800
+      model: NIKON D3500
+      shutterSpeed: 2.5
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/011.jpg
+    meta:
+      title: '011'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-12-27T17:20:24.000Z
+      fNumber: 5.6
+      focalLength: 30
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 25
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/012.jpg
+    meta:
+      title: '012'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-04-21T13:39:59.000Z
+      fNumber: 4.5
+      focalLength: 32
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 400
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/013.jpg
+    meta:
+      title: '013'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2025-01-04T15:41:24.000Z
+      fNumber: 5
+      focalLength: 40
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 2.5
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/014.jpg
+    meta:
+      title: '014'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2025-01-04T10:38:57.000Z
+      fNumber: 10
+      focalLength: 18
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 5
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/015.jpg
+    meta:
+      title: '015'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2025-03-09T14:30:19.000Z
+      fNumber: 13
+      focalLength: 31
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 5
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/016.jpg
+    meta:
+      title: '016'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2025-03-09T13:59:17.000Z
+      fNumber: 13
+      focalLength: 55
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 25
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/017.jpg
+    meta:
+      title: '017'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-01-05T14:46:34.000Z
+      fNumber: 5
+      focalLength: 40
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 640
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/018.jpg
+    meta:
+      title: '018'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-12-27T16:39:28.000Z
+      fNumber: 5.6
+      focalLength: 18
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 80
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/019.jpg
+    meta:
+      title: '019'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-01-05T15:20:13.000Z
+      fNumber: 3.8
+      focalLength: 22
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 1250
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/020.jpg
+    meta:
+      title: '020'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-04-21T13:39:39.000Z
+      fNumber: 4
+      focalLength: 26
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 400
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/021.jpg
+    meta:
+      title: '021'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-05-06T19:51:56.000Z
+      fNumber: 20
+      focalLength: 32
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 3
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/022.jpg
+    meta:
+      title: '022'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-05-06T19:49:06.000Z
+      fNumber: 4.2
+      focalLength: 29
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 320
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/023.jpg
+    meta:
+      title: '023'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-12-27T16:39:41.000Z
+      fNumber: 5.6
+      focalLength: 34
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 80
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/024.jpg
+    meta:
+      title: '024'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2024-12-27T16:36:11.000Z
+      fNumber: 5.6
+      focalLength: 18
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 80
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: underlight/025.jpg
+    meta:
+      title: '025'
+      description: ''
+      collections:
+        - underlight
+    exif:
+      captureDate: 2025-03-09T14:25:47.000Z
+      fNumber: 13
+      focalLength: 34
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 25
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: featured/001.jpg
+    meta:
+      title: '001'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2024-05-05T12:55:47.000Z
+      fNumber: 6.3
+      focalLength: 72
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 400
+      lensModel: 70.0-300.0 mm f/4.5-6.3
+  - path: featured/002.jpg
+    meta:
+      title: '002'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2026-03-04T09:35:45.000Z
+      fNumber: 7.1
+      focalLength: 56
+      iso: 2500
+      model: Canon EOS R8
+      shutterSpeed: 320
+      lensModel: RF24-105mm F4 L IS USM
+  - path: featured/003.jpg
+    meta:
+      title: '003'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2023-01-22T15:48:21.000Z
+      fNumber: 13
+      focalLength: 22
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 3
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: featured/004.jpg
+    meta:
+      title: '004'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2024-04-21T13:39:39.000Z
+      fNumber: 4
+      focalLength: 26
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 400
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: featured/005.jpg
+    meta:
+      title: '005'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2025-03-09T14:25:47.000Z
+      fNumber: 13
+      focalLength: 34
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 25
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: featured/006.jpg
+    meta:
+      title: '006'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2026-03-03T18:19:38.000Z
+      fNumber: 7.1
+      focalLength: 29
+      iso: 100
+      model: Canon EOS R8
+      shutterSpeed: 13
+      lensModel: RF24-105mm F4 L IS USM
+  - path: featured/007.jpg
+    meta:
+      title: '007'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2025-05-18T12:15:34.000Z
+      fNumber: 4
+      focalLength: 50
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 40
+      lensModel: 50.0 mm f/1.8
+  - path: featured/008.jpg
+    meta:
+      title: '008'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2025-06-21T15:01:41.000Z
+      fNumber: 5.6
+      focalLength: 18
+      iso: 200
+      model: NIKON D3500
+      shutterSpeed: 200
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: featured/009.jpg
+    meta:
+      title: '009'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2025-06-08T20:54:33.000Z
+      fNumber: 4
+      focalLength: 18
+      iso: 400
+      model: NIKON D3500
+      shutterSpeed: 8
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: featured/010.jpg
+    meta:
+      title: '010'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2026-03-03T17:59:14.000Z
+      fNumber: 9
+      focalLength: 45
+      iso: 160
+      model: Canon EOS R8
+      shutterSpeed: 400
+      lensModel: RF24-105mm F4 L IS USM
+  - path: featured/011.jpg
+    meta:
+      title: '011'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2026-05-15T15:18:45.000Z
+      fNumber: 22
+      focalLength: 35
+      iso: 2500
+      model: Canon EOS R8
+      shutterSpeed: 250
+      lensModel: RF24-105mm F4 L IS USM
+  - path: featured/012.jpg
+    meta:
+      title: '012'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2025-06-21T20:35:49.000Z
+      fNumber: 5
+      focalLength: 42
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 640
+      lensModel: 18.0-55.0 mm f/3.5-5.6
+  - path: featured/013.jpg
+    meta:
+      title: '013'
+      description: ''
+      collections:
+        - featured
+    exif:
+      captureDate: 2025-05-18T09:04:48.000Z
+      fNumber: 5.3
+      focalLength: 48
+      iso: 100
+      model: NIKON D3500
+      shutterSpeed: 200
+      lensModel: 18.0-55.0 mm f/3.5-5.6

@@ -1,0 +1,54 @@
+---
+// A click-through YouTube thumbnail: shows the video's own poster image with a
+// play-button overlay and opens the video in a new tab. Nothing is embedded.
+interface Props {
+	url: string;
+	title?: string;
+}
+
+const { url, title } = Astro.props;
+
+/** Extracts the video id from the common YouTube URL shapes. */
+const getVideoId = (raw: string): string | undefined => {
+	const match = raw.match(
+		/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|v\/))([\w-]+)/,
+	);
+	return match?.[1];
+};
+
+const videoId = getVideoId(url);
+const thumb = videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : undefined;
+---
+
+{
+	thumb && (
+		<a
+			href={url}
+			target="_blank"
+			rel="noopener"
+			aria-label={title ? `Watch on YouTube: ${title}` : 'Watch on YouTube'}
+			class="group relative block overflow-hidden rounded-sm bg-black shadow-sm"
+			style="aspect-ratio: 16 / 9;"
+		>
+			<img
+				src={thumb}
+				alt={title ?? 'Video thumbnail'}
+				loading="lazy"
+				class="absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-[1.02] group-hover:brightness-90"
+			/>
+			<span class="absolute inset-0 flex items-center justify-center">
+				<svg
+					class="h-[48px] w-[68px] drop-shadow-lg transition-transform duration-300 group-hover:scale-110"
+					viewBox="0 0 68 48"
+					aria-hidden="true"
+				>
+					<path
+						class="fill-black/70 transition-colors duration-300 group-hover:fill-[#f00]"
+						d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"
+					/>
+					<path class="fill-white" d="M45 24 27 14v20z" />
+				</svg>
+			</span>
+		</a>
+	)
+}

@@ -6,7 +6,9 @@ export const createGalleryImage = async (
     galleryDir: string,
     file: string,
 ): Promise<GalleryImage> => {
-    const relativePath = path.relative(galleryDir, file);
+    // Normalise to forward slashes so paths match the POSIX-style keys used by
+    // `import.meta.glob` in imageStore (path.relative uses "\" on Windows).
+    const relativePath = path.relative(galleryDir, file).split(path.sep).join('/');
     const exifData = await exifr.parse(file);
     const image = {
         path: relativePath,
