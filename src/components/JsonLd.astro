@@ -1,0 +1,13 @@
+---
+interface Props {
+	schema: Record<string, unknown>;
+}
+
+const { schema } = Astro.props;
+
+// `</script>` inside a JSON string value would otherwise terminate the block early, so the
+// opening angle bracket is escaped. It stays valid JSON — < decodes back to "<".
+const json = JSON.stringify(schema).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

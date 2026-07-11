@@ -7,8 +7,10 @@ import PhotoGrid from '../../components/PhotoGrid.astro';
 import AlbumText from '../../components/AlbumText.astro';
 import YouTubeLink from '../../components/YouTubeLink.astro';
 import Flipbook from '../../components/Flipbook.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import flipbooksData from '../../data/flipbooks.json';
 import { getImages, getImageByPath } from '../../data/imageStore';
+import { breadcrumbSchema, imageAlt, imageGallerySchema } from '../../data/jsonld';
 
 const flipbooks = flipbooksData as Record<
 	string,
@@ -26,16 +28,51 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { album } = Astro.props;
-const { title, description, galleryCollection, cover: coverPath, videos, pdfs } = album.data;
+const {
+	title,
+	description,
+	seoDescription,
+	galleryCollection,
+	cover: coverPath,
+	videos,
+	pdfs,
+} = album.data;
 
 const cover = await getImageByPath(coverPath);
 const images = await getImages({ collection: galleryCollection });
 const { Content } = await render(album);
 
 const langLabel = (lang: 'en' | 'el') => (lang === 'el' ? 'Ελληνικά' : 'English');
+
+// The on-page `description` is long-form prose; Google truncates around 160 chars, so prefer
+// the purpose-written `seoDescription` when the album supplies one.
+const metaDescription = seoDescription ?? description;
+const url = `/albums/${album.id}`;
 ---
 
-<MainLayout title={title} description={description} image={cover?.src.src}>
+<MainLayout title={title} description={metaDescription} image={cover?.src.src}>
+	<JsonLd
+		slot="head"
+		schema={imageGallerySchema(Astro.site, {
+			url,
+			name: title,
+			description: metaDescription,
+			images: images.map((image) => ({
+				contentUrl: image.src.src,
+				name: imageAlt(image),
+				description: image.description || undefined,
+			})),
+		})}
+	/>
+	<JsonLd
+		slot="head"
+		schema={breadcrumbSchema(Astro.site, [
+			{ name: 'Home', url: '/' },
+			{ name: 'Albums', url: '/albums' },
+			{ name: title, url },
+		])}
+	/>
+
 	<!-- Split hero: cover image beside the album title -->
 	<section class="pt-28 pb-8 md:pt-32">
 		<div class="container-custom">

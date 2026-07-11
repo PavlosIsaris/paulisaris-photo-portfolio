@@ -3,9 +3,19 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Hero from '../components/Hero.astro';
 import FeaturedGallery from '../components/FeaturedGallery.astro';
 import AlbumsShowcase from '../components/AlbumsShowcase.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { webSiteSchema } from '../data/jsonld';
+
+const description =
+	'Photography by Paul Isaris, an artist from Athens working across image, writing and music. Explore the NOPLACE and Underlight series — beyond the surface.';
 ---
 
-<MainLayout>
+<MainLayout
+	fullTitle="Paul Isaris — Photographer & Visual Artist, Athens"
+	description={description}
+>
+	<JsonLd slot="head" schema={webSiteSchema(Astro.site)} />
+
 	<Hero />
 
 	<section class="featured-section py-24">

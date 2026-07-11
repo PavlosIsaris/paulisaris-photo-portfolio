@@ -1,25 +1,74 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import PhotoGrid from '../../components/PhotoGrid.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { getCollections, getImages } from '../../data/imageStore';
+import { breadcrumbSchema, imageAlt, imageGallerySchema } from '../../data/jsonld';
+import type { Collection } from '../../data/galleryData';
 
-const { collection } = Astro.params;
-const images = await getImages(collection ? { collection } : {});
+interface Props {
+	collection?: Collection;
+}
 
+// The bare /collections/ page (no param) shows every photo; each named collection shows its own.
+// The collection is threaded through as a prop rather than re-read from params so each page can
+// give itself a unique title, description and <h1> — otherwise all three URLs get indexed as
+// duplicates of one another.
 export const getStaticPaths = async () => {
-	return [{ id: undefined }, ...(await getCollections())].map((collection) => {
-		return {
+	return [
+		{ params: { collection: undefined }, props: {} },
+		...(await getCollections()).map((collection) => ({
 			params: { collection: collection.id },
-		};
-	});
+			props: { collection },
+		})),
+	];
 };
+
+const { collection } = Astro.props;
+const images = await getImages(collection ? { collection: collection.id } : {});
+
+const heading = collection?.name ?? 'Gallery';
+const url = collection ? `/collections/${collection.id}` : '/collections';
+
+// The <h1> stays the bare collection name, but the <title> is suffixed: an album page can share
+// a name with its collection (e.g. "Underlight"), and two pages must not compete for one title.
+const metaTitle = collection ? `${collection.name} — Photographs` : 'Gallery';
+
+const intro =
+	collection?.description ?? 'Every frame, across every series — the complete archive.';
+
+const description = collection
+	? (collection.description ??
+		`${collection.name} — a photographic series by Paul Isaris. Browse the full set of images from the collection.`)
+	: 'The complete photographic archive of Paul Isaris — every frame from the No Place and Underlight series, gathered into one gallery.';
+
+const crumbs = [
+	{ name: 'Home', url: '/' },
+	{ name: 'Gallery', url: '/collections' },
+	...(collection ? [{ name: collection.name, url }] : []),
+];
 ---
 
-<MainLayout>
+<MainLayout title={metaTitle} description={description} image={images[0]?.src.src}>
+	<JsonLd
+		slot="head"
+		schema={imageGallerySchema(Astro.site, {
+			url,
+			name: heading,
+			description,
+			images: images.map((image) => ({
+				contentUrl: image.src.src,
+				name: imageAlt(image),
+				description: image.description || undefined,
+			})),
+		})}
+	/>
+	<JsonLd slot="head" schema={breadcrumbSchema(Astro.site, crumbs)} />
+
 	<section class="py-16 pt-24">
 		<div class="container-custom mb-16 text-center">
-			<h1 class="text-4xl md:text-5xl font-bold mb-4">Gallery</h1>
-			<p class="text-gray-600 max-w-xl mx-auto">Explore my collection of photographic works</p>
+			<h1 class="text-4xl md:text-5xl font-bold mb-4">{heading}</h1>
+			<p class="text-gray-600 max-w-xl mx-auto">{intro}</p>
 		</div>
 
 		<div class="w-full px-4 sm:px-8 lg:px-16">

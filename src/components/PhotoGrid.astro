@@ -3,6 +3,7 @@ import 'glightbox/dist/css/glightbox.css';
 import '../styles/glightbox-custom.css';
 import { Image } from 'astro:assets';
 import type { Image as ImageType } from '../data/galleryData';
+import { imageAlt } from '../data/jsonld';
 
 interface Props {
 	images: ImageType[];
@@ -28,7 +29,7 @@ const { images } = Astro.props;
 					width={image.src.width}
 					height={image.src.height}
 					class="w-full h-full object-cover rounded-sm shadow-sm hover:shadow-lg transition-shadow"
-					alt={image.title}
+					alt={imageAlt(image)}
 				/>
 			</a>
 		))

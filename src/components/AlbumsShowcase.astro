@@ -34,7 +34,7 @@ const cards = await Promise.all(
 								format="webp"
 								width={cover.src.width}
 								height={cover.src.height}
-								alt={cover.title}
+								alt={cover.description || `${album.data.title} — album cover`}
 								class="h-72 w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
 							/>
 						)}

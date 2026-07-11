@@ -1,6 +1,6 @@
 import { program } from 'commander';
 import * as fs from 'node:fs';
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 import path from 'path';
 import fg from 'fast-glob';
 import { type GalleryData, loadGallery, NullGalleryData } from './galleryData.ts';

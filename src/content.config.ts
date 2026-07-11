@@ -9,6 +9,9 @@ const posts = defineCollection({
         z.object({
             title: z.string(),
             description: z.string(),
+            // Optional search-engine description (~150 chars). Falls back to `description`.
+            // Use this when `description` is long or poetic — Google truncates around 160.
+            seoDescription: z.string().optional(),
             // Publish date — controls ordering (newest first).
             date: z.coerce.date(),
             // Optional cover image, relative to the post file. Optimized at build.
@@ -27,8 +30,11 @@ const albums = defineCollection({
     loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/albums' }),
     schema: z.object({
         title: z.string(),
-        // Short summary used on the homepage/album cards and for SEO.
+        // Short summary used on the homepage/album cards.
         description: z.string(),
+        // Optional search-engine description (~150 chars). Falls back to `description`.
+        // The album descriptions are long prose, which Google truncates around 160 chars.
+        seoDescription: z.string().optional(),
         // id of an existing collection in src/gallery/gallery.yaml — its images
         // become this album's photo grid.
         galleryCollection: z.string(),

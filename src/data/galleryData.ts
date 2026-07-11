@@ -15,11 +15,13 @@ export interface GalleryData {
 /**
  * Represents a collection of images
  * @property {string} name - Name of the collection
+ * @property {string} [description] - Short summary, used as the collection page's meta description
  * @property {GalleryImage[]} getImages - Array of images in the collection
  */
 export interface Collection {
     id: string;
     name: string;
+    description?: string;
 }
 
 /**

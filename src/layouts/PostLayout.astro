@@ -2,26 +2,69 @@
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import MainLayout from './MainLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { blogPostingSchema, breadcrumbSchema } from '../data/jsonld';
 
 interface Props {
 	title: string;
 	description: string;
+	seoDescription?: string;
 	date: Date;
 	tags?: string[];
 	cover?: ImageMetadata;
 	coverAlt?: string;
+	slug: string;
 }
 
-const { title, description, date, tags = [], cover, coverAlt } = Astro.props;
+const {
+	title,
+	description,
+	seoDescription,
+	date,
+	tags = [],
+	cover,
+	coverAlt,
+	slug,
+} = Astro.props;
 
 const formattedDate = new Intl.DateTimeFormat('en-US', {
 	year: 'numeric',
 	month: 'long',
 	day: 'numeric',
 }).format(date);
+
+const metaDescription = seoDescription ?? description;
+const url = `/posts/${slug}`;
 ---
 
-<MainLayout title={title} description={description} image={cover?.src}>
+<MainLayout
+	title={title}
+	description={metaDescription}
+	image={cover?.src}
+	type="article"
+	publishedTime={date}
+	tags={tags}
+>
+	<JsonLd
+		slot="head"
+		schema={blogPostingSchema(Astro.site, {
+			url,
+			title,
+			description: metaDescription,
+			date,
+			image: cover?.src,
+			tags,
+		})}
+	/>
+	<JsonLd
+		slot="head"
+		schema={breadcrumbSchema(Astro.site, [
+			{ name: 'Home', url: '/' },
+			{ name: 'Posts', url: '/posts' },
+			{ name: title, url },
+		])}
+	/>
+
 	<article class="pt-32 pb-20">
 		<div class="container-custom">
 			<header class="max-w-3xl mx-auto text-center mb-10">

@@ -1,8 +1,14 @@
 collections:
     - id: noplace
       name: No Place
+      description: >-
+          No Place — a photographic series by Paul Isaris on the spaces that ask nothing of us:
+          no monuments, no destination, no promise of experience.
     - id: underlight
       name: Underlight
+      description: >-
+          Underlight — a photographic series by Paul Isaris on the dim glow and the half-light,
+          and on what light conceals as much as what it reveals.
 images:
     - path: noplace/Project_2026_001.jpg
       meta:

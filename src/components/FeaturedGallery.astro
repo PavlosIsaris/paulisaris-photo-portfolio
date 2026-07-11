@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { featuredCollectionId, getHeroImage, getImages } from '../data/imageStore';
+import { imageAlt } from '../data/jsonld';
 import siteConfig from '../../site.config.mjs';
 
 const base = import.meta.env.BASE_URL;
@@ -36,7 +37,7 @@ const images = (await getImages({ collection: featuredCollectionId })).filter(
 						width={image.src.width}
 						height={image.src.height}
 						class="w-full h-auto object-cover shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:scale-[1.02]"
-						alt={image.title}
+						alt={imageAlt(image)}
 					/>
 				</a>
 			))
