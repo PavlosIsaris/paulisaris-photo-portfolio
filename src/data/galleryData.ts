@@ -93,7 +93,18 @@ export type ImageModule = { default: ImageMetadata };
 export const loadGallery = async (galleryPath: string): Promise<GalleryData> => {
     const yamlPath = path.resolve(process.cwd(), galleryPath);
     const content = await fs.readFile(yamlPath, 'utf8');
-    return yaml.load(content) as GalleryData;
+    const gallery = yaml.load(content) as GalleryData;
+    return { ...gallery, images: gallery.images?.map(withParsedCaptureDate) };
+};
+
+/**
+ * js-yaml resolves timestamps as plain strings (YAML 1.2 core schema), so capture dates
+ * are revived into the `Date` objects the rest of the gallery code expects.
+ */
+const withParsedCaptureDate = (image: GalleryImage): GalleryImage => {
+    const captureDate = image.exif?.captureDate as Date | string | undefined;
+    if (!captureDate || captureDate instanceof Date) return image;
+    return { ...image, exif: { ...image.exif, captureDate: new Date(captureDate) } };
 };
 
 export const NullGalleryData: GalleryData = {
