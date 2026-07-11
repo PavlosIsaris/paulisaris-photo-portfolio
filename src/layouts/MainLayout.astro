@@ -3,6 +3,7 @@ import '../styles/global.css';
 import siteConfig from '../../site.config.mjs';
 import Footer from '../components/Footer.astro';
 import NavBar from '../components/NavBar.astro';
+import { getHeroImage } from '../data/imageStore';
 
 interface Props {
 	title?: string;
@@ -21,14 +22,23 @@ const pageDescription =
 	description ?? `Photography by ${owner} — collections, galleries and posts.`;
 const siteURL = Astro.site?.href?.replace(/\/$/, '');
 
+// Site-wide fallback when a page passes no `image`: an explicit URL is used as-is,
+// anything else is looked up as a gallery-relative path (and getHeroImage itself
+// falls back to heroImage / the first featured photo).
+const configImage = siteConfig.seoImage || siteConfig.heroImage;
+const fallbackImage = /^(https?:\/\/|\/)/.test(configImage)
+	? configImage
+	: (await getHeroImage(configImage))?.src.src;
+const pageImage = image ?? fallbackImage;
+
 // Absolute canonical + social image URLs require `site` to be set in astro.config.
 const canonicalURL = Astro.site ? `${siteURL}${Astro.url.pathname}` : undefined;
 const socialImage =
-	image && Astro.site
-		? image.match(/^https?:\/\//)
-			? image
-			: `${siteURL}/${image.replace(/^\//, '')}`
-		: image;
+	pageImage && Astro.site
+		? pageImage.match(/^https?:\/\//)
+			? pageImage
+			: `${siteURL}/${pageImage.replace(/^\//, '')}`
+		: pageImage;
 ---
 
 <html lang="en" class="h-full">
@@ -67,6 +77,7 @@ const socialImage =
 		<meta property="og:description" content={pageDescription} />
 		{canonicalURL && <meta property="og:url" content={canonicalURL} />}
 		{socialImage && <meta property="og:image" content={socialImage} />}
+		{socialImage && <meta property="og:image:alt" content={pageTitle} />}
 		<meta name="twitter:card" content={socialImage ? 'summary_large_image' : 'summary'} />
 		<meta name="twitter:title" content={pageTitle} />
 		<meta name="twitter:description" content={pageDescription} />

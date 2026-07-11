@@ -11,10 +11,14 @@ export interface SocialLink {
 export default {
     title: 'Paul Isaris', // shown in the navbar / logo
     favicon: 'favicon.svg',
-    owner: 'Paul Isaris', // used in <title>, footer, etc.
+    owner: 'Paul Isaris - Παύλος Ίσαρης', // used in <title>, footer, etc.
     // Home-page hero photo — gallery-relative path from gallery.yaml.
     // Leave empty ('') to use the first image of the "featured" collection.
     heroImage: 'noplace/Project_2026_021.jpg',
+    // Social-share image (og:image) for pages that don't set their own.
+    // A gallery-relative path from gallery.yaml, or a full https:// URL / root-relative
+    // path (e.g. '/images/og.jpg'). Leave empty ('') to reuse heroImage.
+    seoImage: '/images/seo.jpg',
     profileImage: 'profile.webp', // lives in public/images/
     socialLinks: [
         {
