@@ -1,7 +1,16 @@
+# ⚠️ REFERENCE ONLY — App Platform does NOT read this file on deploy.
+# This app was created through the DO control panel, so the live config is whatever the
+# app's own spec says, not what is committed here. Pushing a change to this file changes
+# nothing. To actually apply the `domains` / `ingress` blocks below, either:
+#   • DO control panel → your app → Settings → App Spec → edit → Save, or
+#   • doctl apps update <app-id> --spec <spec.yaml>   (pull the live spec first!)
+# Keep this file in sync by hand, or delete it to avoid it drifting into a lie.
+
 name: paulisaris-photo-portfolio
 region: fra # closest region to you / your audience — change if needed
 static_sites:
-    - name: astro-portfolio
+    # Component name must match the live app spec — the ingress catch-all below routes to it.
+    - name: paulisaris-photo-portfolio
       github:
           repo: PavlosIsaris/paulisaris-photo-portfolio
           branch: release
@@ -10,3 +19,36 @@ static_sites:
       output_dir: dist
       # Node is auto-detected from .nvmrc. If DO doesn't yet support that Node
       # version, pin .nvmrc to the latest LTS DO supports (see DEPLOYMENT.md §7).
+
+# `zone` tells App Platform the domain uses DigitalOcean DNS, so it creates and
+# maintains the records itself (the apex A/AAAA, and the CNAME for www) and issues
+# the TLS certs. Without the www entry here, www.paulisaris.com does not resolve.
+domains:
+    - domain: paulisaris.com
+      type: PRIMARY
+      zone: paulisaris.com
+    - domain: www.paulisaris.com
+      type: ALIAS
+      zone: paulisaris.com
+
+# Everything canonical on this site is non-www (see `site` in astro.config.mts), so www
+# must 301 to the apex rather than serve a second, duplicate copy of every page. The first
+# rule matches only the www host and redirects; the second serves everything else normally.
+# Order matters — the redirect must come before the catch-all.
+ingress:
+    rules:
+        - match:
+              authority:
+                  exact: www.paulisaris.com
+              path:
+                  prefix: /
+          redirect:
+              authority: paulisaris.com
+              redirect_code: 301
+        - component:
+              name: paulisaris-photo-portfolio
+          match:
+              authority:
+                  exact: '' # App Platform's serialization of "any host" — the catch-all
+              path:
+                  prefix: /
