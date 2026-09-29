@@ -61,7 +61,8 @@ jobs: `lint` (the pre-commit hooks: whitespace, YAML check, Prettier, ESLint), `
 (`astro check`), `test` (`npm test`) and `build-check` (`npm run build`, output discarded;
 it only proves the build succeeds). The Node version comes from `.nvmrc`. Run
 `npx vitest run`, `npm run lint`, `npm run typecheck` and `npm run build` before you say a
-change is done.
+change is done. Run them on the Node version in `.nvmrc` (`nvm use`): some failures appear only
+on Node 26, for example the `exifr` workaround in `galleryEntityFactory.ts`.
 
 ## Repository layout
 
