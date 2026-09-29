@@ -21,7 +21,7 @@
         "@types/node": "^26.1.0",
         "@typescript-eslint/eslint-plugin": "^8.62.1",
         "@typescript-eslint/parser": "^8.62.1",
-        "astro": "^5.18.2",
+        "astro": "^7.3.5",
         "astro-eslint-parser": "^1.4.0",
         "commander": "^13.1.0",
         "eslint": "^9.39.4",
@@ -45,7 +45,7 @@
         "vitest": "^4.1.9"
     },
     "dependencies": {
-        "@astrojs/mdx": "^4.3.14",
+        "@astrojs/mdx": "^8.0.2",
         "@astrojs/rss": "^4.0.19",
         "@astrojs/sitemap": "^3.7.3"
     }
