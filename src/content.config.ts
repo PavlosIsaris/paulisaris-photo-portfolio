@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 // Blog posts live as Markdown/MDX files in src/content/posts/.
@@ -47,7 +48,7 @@ const albums = defineCollection({
             .array(
                 z.object({
                     lang: z.enum(['en', 'el']),
-                    url: z.string().url(),
+                    url: z.url(),
                     title: z.string().optional(),
                 }),
             )
@@ -62,7 +63,7 @@ const albums = defineCollection({
                     flipbook: z.string().optional(),
                     // Optional external URL — used as the link/fallback when there is no
                     // flipbook (or its images haven't been generated yet).
-                    url: z.string().url().optional(),
+                    url: z.url().optional(),
                     label: z.string().optional(),
                 }),
             )
