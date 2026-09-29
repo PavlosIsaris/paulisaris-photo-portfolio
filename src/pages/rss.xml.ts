@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
-import siteConfig from '../../site.config.mjs';
+import siteConfig from '../../site.config.mts';
 
 export async function GET(context: APIContext) {
     // The RSS feed needs an absolute site URL. It stays dormant until you set

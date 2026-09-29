@@ -1,4 +1,5 @@
 import path from 'path';
+import { promises as fs } from 'fs';
 import type { GalleryImage } from './galleryData.ts';
 import exifr from 'exifr';
 
@@ -9,7 +10,9 @@ export const createGalleryImage = async (
     // Normalise to forward slashes so paths match the POSIX-style keys used by
     // `import.meta.glob` in imageStore (path.relative uses "\" on Windows).
     const relativePath = path.relative(galleryDir, file).split(path.sep).join('/');
-    const exifData = await exifr.parse(file);
+    // Pass a buffer, not the path: for paths exifr 7.1.3 calls `fileHandle.stat(path)`, which
+    // Node 26 rejects because FileHandle.stat() only accepts an options object.
+    const exifData = await exifr.parse(await fs.readFile(file));
     const image = {
         path: relativePath,
         meta: {

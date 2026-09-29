@@ -3,7 +3,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import { Content as AboutPage } from '../content/about.md';
 import JsonLd from '../components/JsonLd.astro';
 import { profilePageSchema, breadcrumbSchema } from '../data/jsonld';
-import siteConfig from '../../site.config.mjs';
+import siteConfig from '../../site.config.mts';
 
 const profileImage = siteConfig.profileImage;
 const base = import.meta.env.BASE_URL;

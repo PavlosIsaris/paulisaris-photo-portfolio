@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { getHeroImage } from '../data/imageStore';
 import { imageAlt } from '../data/jsonld';
-import siteConfig from '../../site.config.mjs';
+import siteConfig from '../../site.config.mts';
 
 const base = import.meta.env.BASE_URL;
 const hero = await getHeroImage(siteConfig.heroImage);

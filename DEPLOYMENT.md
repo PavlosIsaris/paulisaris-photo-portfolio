@@ -73,10 +73,10 @@ git push -u origin release
 
 `.github/workflows/deploy.yml` currently publishes to GitHub Pages on every push to `main`. Two options:
 
-- **Recommended — retire it.** Once DO is the host, delete `deploy.yml` (and later the `gh-pages` branch). Keep `test.yml` and `quality.yml` — those are still useful CI on PRs.
+- **Recommended — retire it.** Once DO is the host, delete `deploy.yml` (and later the `gh-pages` branch). Keep `ci.yml` — it is still useful CI on PRs.
 - **Or keep it** as a staging mirror on `github.io`. Harmless, just redundant.
 
-> Keep `test.yml` / `quality.yml` regardless — they gate your PRs before code reaches `release`.
+> Keep `ci.yml` regardless — it gates your PRs before code reaches `release`.
 
 ### 3.4 (Optional) Commit a DO App Spec
 

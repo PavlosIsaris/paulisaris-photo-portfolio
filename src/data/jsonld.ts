@@ -1,4 +1,4 @@
-import siteConfig from '../../site.config.mjs';
+import siteConfig from '../../site.config.mts';
 import type { Image } from './galleryData';
 
 /**
