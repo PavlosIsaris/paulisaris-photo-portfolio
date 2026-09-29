@@ -59,7 +59,10 @@ npm run flipbook   # render flipbooks-src/*.pdf into public/flipbooks/ + src/dat
 CI (`.github/workflows/ci.yml`) runs on PRs and on pushes to `main`. It has four parallel
 jobs: `lint` (the pre-commit hooks: whitespace, YAML check, Prettier, ESLint), `typecheck`
 (`astro check`), `test` (`npm test`) and `build-check` (`npm run build`, output discarded;
-it only proves the build succeeds). The Node version comes from `.nvmrc`. Run
+it only proves the build succeeds). A fifth job, `ci` ("CI"), succeeds only when all four
+succeed. It is the one check that the `main-branch-protection` ruleset requires, so add any new
+job to its `needs` list. `dependabot_auto_merge.yml` enables auto-merge for minor and patch
+Dependabot PRs; majors stay manual. The Node version comes from `.nvmrc`. Run
 `npx vitest run`, `npm run lint`, `npm run typecheck` and `npm run build` before you say a
 change is done. Run them on the Node version in `.nvmrc` (`nvm use`): some failures appear only
 on Node 26, for example the `exifr` workaround in `galleryEntityFactory.ts`.

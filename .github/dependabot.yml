@@ -1,4 +1,6 @@
-# Dependabot configuration for a Laravel repository (Composer + npm + GitHub Actions).
+# Dependabot configuration for this Astro site (npm + GitHub Actions).
+#
+# The labels below must exist in the repository; Dependabot does not create them.
 #
 # Strategy: security updates only.
 #   - `open-pull-requests-limit: 0` disables scheduled version updates for each

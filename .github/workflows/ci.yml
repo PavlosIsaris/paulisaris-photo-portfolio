@@ -94,3 +94,24 @@ jobs:
 
             - name: Build the Astro site
               run: npm run build
+
+    # Single aggregate check for the main-branch ruleset: green only when every job above
+    # succeeded. `always()` makes it report even when a job fails, so a failure blocks the merge
+    # instead of leaving the required check pending forever.
+    ci:
+        name: CI
+        needs: [lint, typecheck, test, build-check]
+        if: always()
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        steps:
+            - name: Check job results
+              env:
+                  RESULTS: ${{ toJSON(needs) }}
+              # Only `success` counts: `failure`, `cancelled` and `skipped` all block.
+              run: |
+                  echo "$RESULTS" | jq -r 'to_entries[] | "\(.key): \(.value.result)"'
+                  echo "$RESULTS" | jq -e 'all(.[]; .result == "success")' > /dev/null || {
+                      echo "At least one job did not succeed."
+                      exit 1
+                  }
