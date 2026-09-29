@@ -1,0 +1,55 @@
+# Auto-merge Dependabot pull requests.
+#
+# How it works:
+#   - Runs only for PRs opened by dependabot[bot]
+#   - Merges only semver-minor and semver-patch updates. Majors keep
+#     requiring manual review: dependabot.yml is security-only, so a
+#     security fix that lives in a new major is proposed but not merged
+#     here. For a grouped PR, update-type is the highest semver change in
+#     the group. An undeterminable update type (empty output) is left alone.
+#   - Enables GitHub native auto-merge, which merges the PR only after
+#     all *required* status checks in the main-branch ruleset pass
+#
+# Prerequisites (repository settings — without these the workflow is unsafe):
+#   1. The `main-branch-protection` ruleset is active and requires the
+#      aggregate `CI` check from ci.yml (it is green only when the lint,
+#      typecheck, test and build-check jobs succeed).
+#      WARNING: with no required checks, `gh pr merge --auto` merges
+#      immediately, before CI has run.
+#   2. "Allow auto-merge" enabled (Settings -> General). Enable it only
+#      after step 1. While it is off, the merge step fails and merges nothing.
+#
+# Merges made with GITHUB_TOKEN do not trigger other workflows, so ci.yml
+# does not run again on the resulting push to main. The PR run already
+# covered the same tree. DigitalOcean deploys only from `release`, so an
+# auto-merge never publishes the site.
+
+name: Dependabot Auto-Merge
+
+on: pull_request
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    auto-merge:
+        runs-on: ubuntu-latest
+        if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'PavlosIsaris/paulisaris-photo-portfolio'
+        steps:
+            - name: Fetch Dependabot metadata
+              id: metadata
+              uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+              with:
+                  github-token: '${{ secrets.GITHUB_TOKEN }}'
+
+            - name: Enable auto-merge
+              # Allowlist, not denylist: an empty update-type (non-semver
+              # version, undeterminable grouped PR) must not auto-merge.
+              if: >-
+                  steps.metadata.outputs.update-type == 'version-update:semver-minor' ||
+                  steps.metadata.outputs.update-type == 'version-update:semver-patch'
+              run: gh pr merge --auto --merge "$PR_URL"
+              env:
+                  PR_URL: ${{ github.event.pull_request.html_url }}
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
