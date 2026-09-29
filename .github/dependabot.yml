@@ -2,13 +2,20 @@
 #
 # The labels below must exist in the repository; Dependabot does not create them.
 #
-# Strategy: security updates only.
-#   - `open-pull-requests-limit: 0` disables scheduled version updates for each
-#     ecosystem. Security (advisory-driven) PRs are not subject to this limit.
+# Strategy:
+#   - npm: security updates only. `open-pull-requests-limit: 0` disables
+#     scheduled version updates; security (advisory-driven) PRs are not subject
+#     to this limit. `schedule` is required by the schema but produces no PRs.
+#   - GitHub Actions: security updates plus monthly version updates, so the
+#     pinned actions do not fall behind (e.g. onto a deprecated Node runtime).
+#     Minor and patch bumps come as one grouped PR, which
+#     dependabot_auto_merge.yml merges once CI passes. Each major comes as its
+#     own PR for manual review, so it cannot block the grouped PR.
+#     Dependabot also updates the `# vX.Y.Z` comment after each pinned SHA,
+#     as long as the comment names the version that the SHA points to.
 #   - Security PRs per ecosystem are grouped into a single PR.
 #   - No `ignore` block: a security fix that exists only in a new major must
 #     still be proposed. Majors need manual review.
-#   - `schedule` is required by the schema but produces no PRs at limit 0.
 #
 # Security updates also require "Dependabot security updates" to be enabled in
 # the repository's Security settings.
@@ -41,11 +48,10 @@ updates:
     - package-ecosystem: github-actions
       directory: /
       schedule:
-          interval: weekly
-          day: monday
+          interval: monthly
           time: '06:00'
           timezone: Etc/UTC
-      open-pull-requests-limit: 0
+      open-pull-requests-limit: 5
       labels:
           - dependencies
           - github-actions
@@ -54,3 +60,12 @@ updates:
               applies-to: security-updates
               patterns:
                   - '*'
+          # Majors are left out of this group on purpose: they arrive as
+          # separate PRs and are not auto-merged.
+          github-actions-minor-patch:
+              applies-to: version-updates
+              patterns:
+                  - '*'
+              update-types:
+                  - minor
+                  - patch
