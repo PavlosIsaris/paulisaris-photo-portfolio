@@ -21,7 +21,7 @@
         "@types/node": "^26.1.0",
         "@typescript-eslint/eslint-plugin": "^8.62.1",
         "@typescript-eslint/parser": "^8.62.1",
-        "astro": "^5.18.2",
+        "astro": "^7.3.5",
         "astro-eslint-parser": "^1.4.0",
         "commander": "^13.1.0",
         "eslint": "^9.39.4",
@@ -35,17 +35,17 @@
         "justified-layout": "^4.1.0",
         "lucide-astro": "^0.556.0",
         "page-flip": "^2.0.7",
-        "pdf-to-img": "^6.2.0",
+        "pdf-to-img": "^7.0.0",
         "prettier": "3.9.4",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-tailwindcss": "0.8.0",
         "sharp": "^0.35.3",
         "tailwindcss": "^4.3.2",
         "tsx": "^4.23.0",
-        "vitest": "^4.1.11"
+        "vitest": "^5.0.2"
     },
     "dependencies": {
-        "@astrojs/mdx": "^4.3.14",
+        "@astrojs/mdx": "^8.0.2",
         "@astrojs/rss": "^4.0.19",
         "@astrojs/sitemap": "^3.7.3"
     }
