@@ -20,10 +20,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout the source repository
-              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
             - name: Setup Node.js
-              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -31,9 +31,25 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
+            # The same steps as pre-commit/action, written out: its latest release (v3.0.1) still
+            # uses actions/cache@v4, which runs on the deprecated Node 20 runtime.
+            - name: Install pre-commit
+              id: pre-commit
+              run: |
+                  python -m pip install pre-commit
+                  echo "python=$(python -VV | sha256sum | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+            # Hook environments are virtualenvs, so the key includes the Python build as well as
+            # the hook config: a runner image with a new Python must not reuse old environments.
+            - name: Cache pre-commit environments
+              uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+              with:
+                  path: ~/.cache/pre-commit
+                  key: pre-commit-${{ steps.pre-commit.outputs.python }}-${{ hashFiles('.pre-commit-config.yaml') }}
+
             # Runs every hook in .pre-commit-config.yaml (whitespace, YAML, Prettier, ESLint).
             - name: Run pre-commit hooks
-              uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+              run: pre-commit run --all-files --show-diff-on-failure --color=always
 
     # `astro build` does not type-check, so `astro check` runs as its own job.
     typecheck:
@@ -41,10 +57,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout the source repository
-              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
             - name: Setup Node.js
-              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -60,10 +76,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout the source repository
-              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
             - name: Setup Node.js
-              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -81,10 +97,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout the source repository
-              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
             - name: Setup Node.js
-              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
               with:
                   node-version-file: .nvmrc
                   cache: npm
