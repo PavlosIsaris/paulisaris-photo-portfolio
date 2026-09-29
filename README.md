@@ -61,18 +61,31 @@ npm run preview    # serve the production build locally
    `src/content/posts/first-light.md` for a worked example, and `wip-draft.md`
    for a draft example.
 
-## Deploying (host not chosen yet)
+## Deploying
 
-The build is host-agnostic (root-domain). When you pick a host:
+The site is a static site on **DigitalOcean App Platform**, served at
+[paulisaris.com](https://paulisaris.com). `www.paulisaris.com` redirects to the
+apex domain.
 
-1. Set `site: 'https://yourdomain.com'` in `astro.config.mts`. This turns on the
-   **sitemap** (`/sitemap-index.xml`) and the **RSS feed** (`/rss.xml`), which
-   stay dormant until `site` is set.
-2. Point the host at this repo with build command `npm run build` and output
-   directory `dist/`. **Cloudflare Pages** is the recommended default (free,
-   generous bandwidth for large photos); Netlify and GitHub Pages also work.
-3. Note: the inherited `.github/workflows/deploy.yml` targets GitHub Pages with
-   the old repo's base path — update or delete it to match your chosen host.
+1. Merge your work into `main`. GitHub Actions run the tests, the build, and the
+   pre-commit checks on pull requests.
+2. To publish, merge `main` into `release` and push:
+
+    ```bash
+    git checkout release
+    git merge main
+    git push
+    ```
+
+3. DigitalOcean builds `release` with `npm run build` and serves `dist/`. A push
+   to `release` is the only thing that deploys the site.
+
+`site` in `astro.config.mts` is set to `https://paulisaris.com`. It turns on the
+sitemap (`/sitemap-index.xml`), the image sitemap, and the RSS feed (`/rss.xml`).
+
+`.do/app.yaml` is a reference copy of the app spec. DigitalOcean does not read
+it on deploy. See [DEPLOYMENT.md](DEPLOYMENT.md) for the full setup, the domain
+configuration, and rollbacks.
 
 ## Built with
 

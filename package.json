@@ -10,10 +10,12 @@
         "format": "prettier . --write",
         "test": "vitest",
         "lint": "eslint . --ext .ts,.js,.astro",
+        "typecheck": "astro check",
         "generate": "npx tsx src/data/gallery-generator.ts src/gallery",
         "flipbook": "npx tsx src/data/flipbook-generator.ts"
     },
     "devDependencies": {
+        "@astrojs/check": "^0.9.10",
         "@tailwindcss/typography": "^0.5.20",
         "@tailwindcss/vite": "^4.3.2",
         "@types/js-yaml": "^4.0.9",
@@ -21,7 +23,7 @@
         "@types/node": "^26.1.0",
         "@typescript-eslint/eslint-plugin": "^8.62.1",
         "@typescript-eslint/parser": "^8.62.1",
-        "astro": "^5.18.2",
+        "astro": "^7.3.3",
         "astro-eslint-parser": "^1.4.0",
         "commander": "^13.1.0",
         "eslint": "^9.39.4",
@@ -31,21 +33,22 @@
         "fast-glob": "^3.3.3",
         "glightbox": "^3.3.1",
         "globals": "^17.7.0",
-        "js-yaml": "^5.2.1",
+        "js-yaml": "^5.4.2",
         "justified-layout": "^4.1.0",
         "lucide-astro": "^0.556.0",
         "page-flip": "^2.0.7",
-        "pdf-to-img": "^6.2.0",
+        "pdf-to-img": "^7.0.0",
         "prettier": "3.9.4",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-tailwindcss": "0.8.0",
         "sharp": "^0.35.3",
         "tailwindcss": "^4.3.2",
         "tsx": "^4.23.0",
-        "vitest": "^4.1.9"
+        "typescript": "^5.9.3",
+        "vitest": "^5.0.1"
     },
     "dependencies": {
-        "@astrojs/mdx": "^4.3.14",
+        "@astrojs/mdx": "^8.0.1",
         "@astrojs/rss": "^4.0.19",
         "@astrojs/sitemap": "^3.7.3"
     }
