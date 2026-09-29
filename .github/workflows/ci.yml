@@ -1,0 +1,96 @@
+name: CI
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+
+# A new push to the same PR or branch cancels the run it replaces.
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+
+jobs:
+    lint:
+        name: Lint & format
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the source repository
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            # Runs every hook in .pre-commit-config.yaml (whitespace, YAML, Prettier, ESLint).
+            - name: Run pre-commit hooks
+              uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+
+    # `astro build` does not type-check, so `astro check` runs as its own job.
+    typecheck:
+        name: Type check
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the source repository
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run astro check
+              run: npm run typecheck
+
+    test:
+        name: Unit tests
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the source repository
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run tests
+              run: npm test
+
+    # Verifies that the production build succeeds. The output is discarded:
+    # DigitalOcean builds and deploys the site itself from the `release` branch.
+    build-check:
+        name: Build check
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the source repository
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build the Astro site
+              run: npm run build
