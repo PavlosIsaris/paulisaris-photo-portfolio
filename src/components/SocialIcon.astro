@@ -1,6 +1,8 @@
 ---
+import type { SocialLink } from '../../site.config.mts';
+
 interface Props {
-	socialLink: { name: string; url: string; icon: any };
+	socialLink: SocialLink;
 	class?: string;
 	size?: number;
 }

@@ -92,6 +92,13 @@ export interface Image {
  */
 export type ImageModule = { default: ImageMetadata };
 
+/**
+ * Built-in collection for the home page. It needs no `collections` entry and has no page.
+ * Defined here, not in imageStore.ts, because gallery-generator.ts runs under tsx, where
+ * imageStore's `import.meta.glob` does not exist.
+ */
+export const featuredCollectionId = 'featured';
+
 export const loadGallery = async (galleryPath: string): Promise<GalleryData> => {
     const yamlPath = path.resolve(process.cwd(), galleryPath);
     const content = await fs.readFile(yamlPath, 'utf8');

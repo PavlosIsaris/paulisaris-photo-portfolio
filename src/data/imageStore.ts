@@ -5,8 +5,11 @@ import {
     type GalleryImage,
     type Image,
     type ImageModule,
+    featuredCollectionId,
     loadGallery,
 } from './galleryData.ts';
+
+export { featuredCollectionId };
 
 /**
  * Error class for image-related errors
@@ -27,7 +30,6 @@ const imageModules = import.meta.glob('/src/**/*.{jpg,jpeg,png,gif}', {
 
 const defaultGalleryPath = 'src/gallery/gallery.yaml';
 
-export const featuredCollectionId = 'featured';
 const builtInCollections = [featuredCollectionId];
 
 /**
@@ -111,7 +113,7 @@ function validateGalleryData(gallery: GalleryData) {
 
 function sortImages(images: GalleryImage[], options: GetImagesOptions) {
     const { sortBy, order } = options;
-    let result: GalleryImage[] = images;
+    const result: GalleryImage[] = images;
     if (sortBy) {
         result.sort((a, b) => {
             const dateA = a.exif?.captureDate?.getTime() || 0;

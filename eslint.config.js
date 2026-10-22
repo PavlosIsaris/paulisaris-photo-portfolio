@@ -1,49 +1,25 @@
 import js from '@eslint/js';
-import ts from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+import { defineConfig } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 import astroPlugin from 'eslint-plugin-astro';
-import astroParser from 'astro-eslint-parser';
 import globals from 'globals';
 
-export default [
-    js.configs.recommended,
+export default defineConfig([
     {
         ignores: ['dist/**', '.astro/**', 'node_modules/**', '.cache/**'],
     },
+    js.configs.recommended,
+    // Also matches *.ts/*.mts, so `eslint .` lints them without `--ext`.
+    tseslint.configs.recommended,
     {
-        files: ['**/*.ts'],
         languageOptions: {
-            parser: tsParser,
-            parserOptions: {
-                project: './tsconfig.json',
-                sourceType: 'module',
-            },
             globals: {
                 ...globals.node,
                 ...globals.browser,
             },
         },
-        plugins: {
-            '@typescript-eslint': ts,
-        },
-        rules: {
-            ...ts.configs.recommended.rules,
-        },
     },
-
-    {
-        files: ['**/*.astro'],
-        languageOptions: {
-            parser: astroParser,
-            parserOptions: {
-                parser: tsParser,
-            },
-        },
-        plugins: {
-            astro: astroPlugin,
-        },
-        rules: {
-            ...astroPlugin.configs.recommended.rules,
-        },
-    },
-];
+    // Must come after typescript-eslint: it switches .astro files to astro-eslint-parser, which
+    // parses the frontmatter and <script> blocks with the TypeScript parser.
+    astroPlugin.configs.recommended,
+]);

@@ -34,7 +34,7 @@ was extended with posts, albums, flipbooks and SEO.
 | Flipbook        | `page-flip` (StPageFlip) in a `<dialog>`                                  |
 | Tooling scripts | `tsx`, `commander`, `exifr`, `fast-glob`, `pdf-to-img`, `sharp`           |
 | Tests           | Vitest                                                                    |
-| Lint / format   | ESLint 9 (flat config), Prettier 3, pre-commit                            |
+| Lint / format   | ESLint 10 (flat config), typescript-eslint, Prettier 3, pre-commit        |
 | Runtime         | Node 26 (`.nvmrc`); `.npmrc` sets `ignore-scripts`, `engine-strict`       |
 | Hosting         | DigitalOcean App Platform static site, deployed from the `release` branch |
 
@@ -49,7 +49,7 @@ npm run dev        # dev server on http://localhost:4321 (drafts visible)
 npm run build      # production build into dist/ (drafts hidden)
 npm run preview    # serve dist/
 npm test           # vitest (watch mode); use `npx vitest run` for a single run
-npm run lint       # eslint over .ts/.js/.astro
+npm run lint       # eslint over .js/.ts/.mts/.astro (file types come from eslint.config.js)
 npm run typecheck  # astro check (TypeScript diagnostics for .astro and .ts)
 npm run format     # prettier --write . (skips .astro, see below)
 npm run generate   # rebuild src/gallery/gallery.yaml from images in src/gallery/
@@ -121,7 +121,9 @@ src/
 2. `npm run generate` scans them and **merges** the result into `src/gallery/gallery.yaml`.
    New images get a title derived from the filename, a collection from their folder, and EXIF
    data. For existing images it refreshes only `exif`. Hand-edited `title`, `description` and
-   `collections` stay as they are. It never removes entries.
+   `collections` stay as they are. It never removes entries. It does not add `featured/` to
+   `collections`, because `featured` is built in. It formats the file with the repository
+   Prettier config, so a run changes only the lines with new or changed data.
 3. At build time `imageStore.ts` loads the YAML (`galleryData.ts#loadGallery`). It validates
    that every `meta.collections` id exists in `collections` or is the built-in `featured`. Then
    it maps each entry to an Astro `ImageMetadata` through
@@ -215,8 +217,9 @@ from a `<script>` tag in its component (Astro bundles it):
 - **Formatting:** Prettier uses 4-space indentation, single quotes, trailing commas and
   `printWidth` 100. **`.astro` files are excluded from Prettier** (`.prettierignore`), because a
   broken `prettier-plugin-astro` once replaced every `.astro` file with an empty stub. Do not
-  run Prettier on `.astro` files and do not remove that exclusion. `.astro` files use **tab**
-  indentation. Match the surrounding file by hand.
+  run Prettier on `.astro` files and do not remove that exclusion. For this reason the project
+  does not install `prettier-plugin-astro`. `.astro` files use **tab** indentation. Match the
+  surrounding file by hand.
 - Import the site config as `'../../site.config.mts'`, its real file name. Do not import
   TypeScript sources through `.mjs`/`.js` aliases. Other modules are imported either without an
   extension (`'../data/imageStore'`) or with `.ts`. Match the file you edit.
@@ -226,9 +229,7 @@ from a `<script>` tag in its component (Astro bundles it):
   standard. Do not delete an existing "why" comment unless its reason no longer applies.
 - To add a photo collection: add the folder under `src/gallery/`, run `npm run generate`, then
   edit `gallery.yaml` (titles, descriptions, collection `name`/`description`). Review the diff.
-  The generator also creates collection entries from folder names, so a run can add an unwanted
-  `featured` entry to `collections`. Remove it, because `featured` is built in. The content
-  integrity test fails until you do.
+  Do not add `featured` to `collections` by hand. The content integrity test fails if you do.
 - To add an album: create `src/content/albums/<id>.mdx` with frontmatter that matches the schema.
   Its `galleryCollection` must be an existing collection id. Its `cover` must be a path that
   exists in `gallery.yaml`.
@@ -237,8 +238,8 @@ from a `<script>` tag in its component (Astro bundles it):
 - `sortImages` in `imageStore.ts` sorts the loaded array in place. It supports only
   `sortBy: 'captureDate'`.
 - Tests in `src/data/__tests__/` use fixture YAML files and images under
-  `src/data/__tests__/gallery/`. `gallery.yaml` in that folder is git-ignored, because the
-  generator tests write it.
+  `src/data/__tests__/gallery/`. `galleryGenerator.test.ts` runs the real
+  `gallery-generator.ts` CLI on a copy of these fixtures in a temporary folder.
 - `contentIntegrity.test.ts` is different: it checks the **real** content. It fails when a
   `gallery.yaml` entry has no file (the build only warns and drops the photo), when a photo
   file has no `gallery.yaml` entry, when an album references a missing collection, cover or

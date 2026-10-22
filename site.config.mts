@@ -1,10 +1,10 @@
-import type { AstroInstance } from 'astro';
 import { Instagram, Mail } from 'lucide-astro';
 
 export interface SocialLink {
     name: string;
     url: string;
-    icon: AstroInstance;
+    // Every lucide-astro icon is an Astro component with the same props.
+    icon: typeof Instagram;
 }
 
 // ── Edit these to make the site yours ──────────────────────────────
@@ -25,11 +25,11 @@ export default {
             name: 'Instagram',
             url: 'https://www.instagram.com/_callpaul',
             icon: Instagram,
-        } as unknown as SocialLink,
+        },
         {
             name: 'Email',
             url: 'mailto:paulisaris@gmail.com',
             icon: Mail,
-        } as unknown as SocialLink,
-    ],
+        },
+    ] satisfies SocialLink[],
 };
