@@ -2,8 +2,15 @@ import { program } from 'commander';
 import * as fs from 'node:fs';
 import * as yaml from 'js-yaml';
 import path from 'path';
+import { fileURLToPath } from 'node:url';
 import fg from 'fast-glob';
-import { type GalleryData, loadGallery, NullGalleryData } from './galleryData.ts';
+import * as prettier from 'prettier';
+import {
+    featuredCollectionId,
+    type GalleryData,
+    loadGallery,
+    NullGalleryData,
+} from './galleryData.ts';
 import { createGalleryCollection, createGalleryImage } from './galleryEntityFactory.ts';
 
 const defaultGalleryFileName = 'gallery.yaml';
@@ -77,11 +84,13 @@ function createCollectionsFrom(imageFiles: string[], galleryDir: string) {
         imageFiles.map((file) => path.dirname(path.relative(galleryDir, file))),
     );
 
+    // src/gallery/featured/ holds the photos of the built-in `featured` collection. As a regular
+    // collection it would get its own /collections/featured page.
     return [...uniqueDirNames]
         .map((dir) => {
             return createGalleryCollection(dir);
         })
-        .filter((col) => col.id !== '.');
+        .filter((col) => col.id !== '.' && col.id !== featuredCollectionId);
 }
 
 async function createImagesFrom(imageFiles: string[], galleryDir: string) {
@@ -90,7 +99,18 @@ async function createImagesFrom(imageFiles: string[], galleryDir: string) {
 
 async function writeGalleryYaml(galleryDir: string, galleryObj: GalleryData) {
     const filePath = path.join(galleryDir, defaultGalleryFileName);
-    await fs.promises.writeFile(filePath, yaml.dump(galleryObj), 'utf8');
+    // gallery.yaml is hand-edited and committed. Without Prettier, every run would rewrite the
+    // whole file in js-yaml's style. Prettier keeps the line breaks of folded descriptions, so
+    // js-yaml must already wrap them at Prettier's indent and width. The config is resolved
+    // from this script, not from galleryDir, so a gallery outside the repository gets the
+    // same style.
+    const options = await prettier.resolveConfig(fileURLToPath(import.meta.url));
+    const dumped = yaml.dump(galleryObj, {
+        indent: options?.tabWidth,
+        lineWidth: options?.printWidth,
+    });
+    const content = await prettier.format(dumped, { ...options, parser: 'yaml' });
+    await fs.promises.writeFile(filePath, content, 'utf8');
     console.log('Gallery file created/updated successfully at:', filePath);
 }
 

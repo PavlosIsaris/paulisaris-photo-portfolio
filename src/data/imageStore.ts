@@ -5,8 +5,11 @@ import {
     type GalleryImage,
     type Image,
     type ImageModule,
+    featuredCollectionId,
     loadGallery,
 } from './galleryData.ts';
+
+export { featuredCollectionId };
 
 /**
  * Error class for image-related errors
@@ -27,7 +30,6 @@ const imageModules = import.meta.glob('/src/**/*.{jpg,jpeg,png,gif}', {
 
 const defaultGalleryPath = 'src/gallery/gallery.yaml';
 
-export const featuredCollectionId = 'featured';
 const builtInCollections = [featuredCollectionId];
 
 /**

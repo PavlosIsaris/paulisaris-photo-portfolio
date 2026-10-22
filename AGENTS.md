@@ -121,7 +121,9 @@ src/
 2. `npm run generate` scans them and **merges** the result into `src/gallery/gallery.yaml`.
    New images get a title derived from the filename, a collection from their folder, and EXIF
    data. For existing images it refreshes only `exif`. Hand-edited `title`, `description` and
-   `collections` stay as they are. It never removes entries.
+   `collections` stay as they are. It never removes entries. It does not add `featured/` to
+   `collections`, because `featured` is built in. It formats the file with the repository
+   Prettier config, so a run changes only the lines with new or changed data.
 3. At build time `imageStore.ts` loads the YAML (`galleryData.ts#loadGallery`). It validates
    that every `meta.collections` id exists in `collections` or is the built-in `featured`. Then
    it maps each entry to an Astro `ImageMetadata` through
@@ -227,9 +229,7 @@ from a `<script>` tag in its component (Astro bundles it):
   standard. Do not delete an existing "why" comment unless its reason no longer applies.
 - To add a photo collection: add the folder under `src/gallery/`, run `npm run generate`, then
   edit `gallery.yaml` (titles, descriptions, collection `name`/`description`). Review the diff.
-  The generator also creates collection entries from folder names, so a run can add an unwanted
-  `featured` entry to `collections`. Remove it, because `featured` is built in. The content
-  integrity test fails until you do.
+  Do not add `featured` to `collections` by hand. The content integrity test fails if you do.
 - To add an album: create `src/content/albums/<id>.mdx` with frontmatter that matches the schema.
   Its `galleryCollection` must be an existing collection id. Its `cover` must be a path that
   exists in `gallery.yaml`.
@@ -238,8 +238,8 @@ from a `<script>` tag in its component (Astro bundles it):
 - `sortImages` in `imageStore.ts` sorts the loaded array in place. It supports only
   `sortBy: 'captureDate'`.
 - Tests in `src/data/__tests__/` use fixture YAML files and images under
-  `src/data/__tests__/gallery/`. `gallery.yaml` in that folder is git-ignored, because the
-  generator tests write it.
+  `src/data/__tests__/gallery/`. `galleryGenerator.test.ts` runs the real
+  `gallery-generator.ts` CLI on a copy of these fixtures in a temporary folder.
 - `contentIntegrity.test.ts` is different: it checks the **real** content. It fails when a
   `gallery.yaml` entry has no file (the build only warns and drops the photo), when a photo
   file has no `gallery.yaml` entry, when an album references a missing collection, cover or
