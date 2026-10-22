@@ -5,8 +5,7 @@ import fg from 'fast-glob';
 import * as yaml from 'js-yaml';
 import siteConfig from '../../../site.config.mts';
 import flipbooks from '../flipbooks.json';
-import { loadGallery } from '../galleryData.ts';
-import { featuredCollectionId } from '../imageStore.ts';
+import { featuredCollectionId, loadGallery } from '../galleryData.ts';
 
 // site.config imports its icons from lucide-astro, which ships raw .astro files that Vitest
 // cannot load. Only the config's image paths matter here.
@@ -63,8 +62,8 @@ describe('Content integrity', () => {
         });
 
         it('does not list the built-in featured collection under `collections`', () => {
-            // gallery-generator.ts derives collections from folder names, so a run re-adds
-            // src/gallery/featured/ as a regular collection and creates /collections/featured.
+            // gallery-generator.ts skips src/gallery/featured/, but a hand edit can still add it
+            // as a regular collection, which creates /collections/featured.
             const ids = gallery.collections.map((collection) => collection.id);
             expect(ids).not.toContain(featuredCollectionId);
         });
