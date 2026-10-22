@@ -25,4 +25,4 @@ repos:
             entry: npm run lint
             language: system
             types: [file]
-            files: \.(js|ts|astro)$
+            files: \.(js|ts|mts|astro)$

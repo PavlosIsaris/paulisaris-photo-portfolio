@@ -34,7 +34,7 @@ was extended with posts, albums, flipbooks and SEO.
 | Flipbook        | `page-flip` (StPageFlip) in a `<dialog>`                                  |
 | Tooling scripts | `tsx`, `commander`, `exifr`, `fast-glob`, `pdf-to-img`, `sharp`           |
 | Tests           | Vitest                                                                    |
-| Lint / format   | ESLint 9 (flat config), Prettier 3, pre-commit                            |
+| Lint / format   | ESLint 10 (flat config), typescript-eslint, Prettier 3, pre-commit        |
 | Runtime         | Node 26 (`.nvmrc`); `.npmrc` sets `ignore-scripts`, `engine-strict`       |
 | Hosting         | DigitalOcean App Platform static site, deployed from the `release` branch |
 
@@ -49,7 +49,7 @@ npm run dev        # dev server on http://localhost:4321 (drafts visible)
 npm run build      # production build into dist/ (drafts hidden)
 npm run preview    # serve dist/
 npm test           # vitest (watch mode); use `npx vitest run` for a single run
-npm run lint       # eslint over .ts/.js/.astro
+npm run lint       # eslint over .js/.ts/.mts/.astro (file types come from eslint.config.js)
 npm run typecheck  # astro check (TypeScript diagnostics for .astro and .ts)
 npm run format     # prettier --write . (skips .astro, see below)
 npm run generate   # rebuild src/gallery/gallery.yaml from images in src/gallery/
@@ -215,8 +215,9 @@ from a `<script>` tag in its component (Astro bundles it):
 - **Formatting:** Prettier uses 4-space indentation, single quotes, trailing commas and
   `printWidth` 100. **`.astro` files are excluded from Prettier** (`.prettierignore`), because a
   broken `prettier-plugin-astro` once replaced every `.astro` file with an empty stub. Do not
-  run Prettier on `.astro` files and do not remove that exclusion. `.astro` files use **tab**
-  indentation. Match the surrounding file by hand.
+  run Prettier on `.astro` files and do not remove that exclusion. For this reason the project
+  does not install `prettier-plugin-astro`. `.astro` files use **tab** indentation. Match the
+  surrounding file by hand.
 - Import the site config as `'../../site.config.mts'`, its real file name. Do not import
   TypeScript sources through `.mjs`/`.js` aliases. Other modules are imported either without an
   extension (`'../data/imageStore'`) or with `.ts`. Match the file you edit.
