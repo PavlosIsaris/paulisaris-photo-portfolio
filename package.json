@@ -39,7 +39,7 @@
         "@types/node": "^26.6.5",
         "@typescript-eslint/eslint-plugin": "^8.71.2",
         "@typescript-eslint/parser": "^8.71.2",
-        "astro": "^7.3.8",
+        "astro": "^7.4.0",
         "astro-eslint-parser": "^1.4.0",
         "commander": "^13.1.0",
         "eslint": "^9.39.5",
@@ -61,10 +61,10 @@
         "tailwindcss": "^4.3.3",
         "tsx": "^4.23.15",
         "typescript": "^5.9.3",
-        "vitest": "^5.0.4"
+        "vitest": "^5.0.5"
     },
     "dependencies": {
-        "@astrojs/mdx": "^8.0.3",
+        "@astrojs/mdx": "^8.1.0",
         "@astrojs/rss": "^4.0.19",
         "@astrojs/sitemap": "^3.7.4"
     }
