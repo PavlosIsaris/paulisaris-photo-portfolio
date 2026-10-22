@@ -24,9 +24,6 @@ pnpm-debug.log*
 .idea/
 .vscode/
 
-# app
-src/data/__tests__/gallery/gallery.yaml
-
 # flipbook source PDFs (the generated WebP pages in public/flipbooks are committed instead)
 flipbooks-src/
 
