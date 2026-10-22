@@ -111,7 +111,7 @@ function validateGalleryData(gallery: GalleryData) {
 
 function sortImages(images: GalleryImage[], options: GetImagesOptions) {
     const { sortBy, order } = options;
-    let result: GalleryImage[] = images;
+    const result: GalleryImage[] = images;
     if (sortBy) {
         result.sort((a, b) => {
             const dateA = a.exif?.captureDate?.getTime() || 0;
